@@ -1,1 +1,0 @@
-export default async req=>{const u=new URL(req.url);await fetch(`${u.origin}/.netlify/functions/refresh-background`,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({query:"這週",mode:"scheduled"})})};export const config={schedule:"0 22 * * *"};
