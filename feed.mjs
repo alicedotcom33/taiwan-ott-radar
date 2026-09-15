@@ -1,1 +1,0 @@
-import {getStore} from "@netlify/blobs";export default async()=>{const s=getStore("ott-radar");const d=await s.get("releases.json",{type:"json"})||{updated_at:null,items:[]};return Response.json(d,{headers:{"cache-control":"no-store"}})};export const config={path:"/.netlify/functions/feed"};
