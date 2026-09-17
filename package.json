@@ -1,1 +1,14 @@
-{"name":"taiwan-ott-radar","version":"2.0.0","private":true,"type":"module","dependencies":{"@netlify/blobs":"^10.0.0"}}
+{
+  "name": "taiwan-ott-radar",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "wrangler deploy --dry-run"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
