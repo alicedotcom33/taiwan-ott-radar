@@ -6,6 +6,10 @@ compatibility_date = "2026-09-17"
 [[kv_namespaces]]
 binding = "OTT_DATA"
 
+# Browser Run is available on Workers Free. No API token is required from the Worker binding.
+[browser]
+binding = "BROWSER"
+
 # 22:15 UTC = 06:15 Asia/Taipei the next day.
 [triggers]
 crons = ["15 22 * * *"]
