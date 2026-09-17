@@ -1,0 +1,10 @@
+name = "taiwan-ott-radar-api"
+main = "cloudflare/worker.js"
+compatibility_date = "2026-09-17"
+
+[[kv_namespaces]]
+binding = "OTT_DATA"
+id = "REPLACE_AFTER_KV_CREATION"
+
+[triggers]
+crons = ["15 22 * * *"]
