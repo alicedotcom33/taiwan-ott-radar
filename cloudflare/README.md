@@ -12,7 +12,7 @@ The `next-source-upgrade` branch is ready to deploy as one Cloudflare Worker wit
 - Existing verified releases persist in KV
 
 ## Cloudflare dashboard deployment
-Connect the GitHub repository `alicedotcom33/taiwan-ott-radar`, select branch `next-source-upgrade`, and deploy it as a Workers project. The repository's `wrangler.toml` is the source of truth. No manual KV namespace ID is required because the binding is configured for automatic provisioning.
+Connect the GitHub repository `alicedotcom33/taiwan-ott-radar`, select branch `next-source-upgrade`, and deploy it as a Workers project. The repository's `wrangler.toml` is the source of truth. Static assets are restricted to `public/`, so dependencies such as `node_modules` are never uploaded as website assets.
 
 ## CLI equivalent
 ```sh
