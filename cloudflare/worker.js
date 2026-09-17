@@ -6,7 +6,7 @@ const CFG={
 'Disney+':{name:'Disney+',urls:['https://www.disney.com.tw/disneyplus-articles']},
 'Hami Video':{name:'Hami Video',urls:['https://hamivideo.hinet.net/index.do']},
 'MyVideo':{name:'MyVideo',urls:['https://www.myvideo.net.tw/drama/','https://www.myvideo.net.tw/program/']},
-'LINE TV':{name:'LINE TV',urls:['https://www.linetv.tw/channel/1','https://www.linetv.tw/channel/2']}}
+'LINE TV':{name:'LINE TV',urls:['https://www.linetv.tw/channel/1','https://www.linetv.tw/channel/2']}
 };
 const J=(x,s=200)=>new Response(JSON.stringify(x),{status:s,headers:{'content-type':'application/json;charset=utf-8','cache-control':'no-store','access-control-allow-origin':'*'}});
 const fmt=d=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(d),today=()=>fmt(new Date());
