@@ -1,19 +1,25 @@
 # Cloudflare deployment
 
-This branch contains a Cloudflare Worker API designed to replace the Netlify Functions backend without changing the current production site.
+The `next-source-upgrade` branch is ready to deploy as one Cloudflare Worker with Static Assets.
 
-## Automated behavior
-- `/api/feed`: cached verified OTT data
-- `/api/refresh`: queues a manual refresh
-- `/api/health`: health check
+## Included automatically
+- Frontend: `public/`
+- API: `/api/feed`, `/api/refresh`, `/api/health`
+- Storage binding: `OTT_DATA` (KV)
+- KV auto-provisioning on first Cloudflare deployment
 - Cron: daily at 06:15 Asia/Taipei (22:15 UTC)
-- KV: persists verified releases across refreshes
 - Seven platforms: iQIYI, friDay影音, Netflix, Disney+, Hami Video, MyVideo, LINE TV
+- Existing verified releases persist in KV
 
-## One-time account setup
-1. Create a Cloudflare KV namespace and bind it as `OTT_DATA`.
-2. Replace `REPLACE_AFTER_KV_CREATION` in `wrangler.toml` with the namespace id.
-3. Deploy the Worker.
-4. Configure the Pages frontend to use the Worker API base URL.
+## Cloudflare dashboard deployment
+Connect the GitHub repository `alicedotcom33/taiwan-ott-radar`, select branch `next-source-upgrade`, and deploy it as a Workers project. The repository's `wrangler.toml` is the source of truth. No manual KV namespace ID is required because the binding is configured for automatic provisioning.
 
-After the one-time setup, the cron refresh is automatic. The existing Netlify production site can remain untouched until the Cloudflare version is verified.
+## CLI equivalent
+```sh
+npm install
+npm run deploy
+```
+
+Cloudflare will deploy the Worker and static assets together. Cron and KV are declared in `wrangler.toml`, so there is no daily manual maintenance after the first deployment.
+
+The Netlify production site remains untouched until this Cloudflare version is verified.
