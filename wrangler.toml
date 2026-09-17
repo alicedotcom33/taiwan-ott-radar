@@ -1,10 +1,16 @@
-name = "taiwan-ott-radar-api"
+name = "taiwan-ott-radar"
 main = "cloudflare/worker.js"
 compatibility_date = "2026-09-17"
 
+# Cloudflare can auto-provision this KV namespace on first deploy.
 [[kv_namespaces]]
 binding = "OTT_DATA"
-id = "REPLACE_AFTER_KV_CREATION"
 
+# 22:15 UTC = 06:15 Asia/Taipei the next day.
 [triggers]
 crons = ["15 22 * * *"]
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
