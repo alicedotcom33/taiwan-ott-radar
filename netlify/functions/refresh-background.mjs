@@ -1,11 +1,40 @@
 import {getStore} from '@netlify/blobs';
-import {now,range,twToday} from './parsers/shared.mjs';
+import {now,range} from './parsers/shared.mjs';
 import {SOURCES,scanPlatform} from './parsers/platforms.mjs';
-function dedupe(items){const m=new Map();for(const x of items){const k=`${x.platform}|${x.title}|${x.release_date||''}`;const old=m.get(k);if(!old||(old.verification_status!=='verified'&&x.verification_status==='verified'))m.set(k,x)}return[...m.values()]}
-function inScope(x,q){return !x.release_date||(x.release_date>=q.start&&x.release_date<=q.end)}
-function safePrevious(x){return x.verification_status==='verified'&&['official_explicit','manual_verified'].includes(x.verification_method)}
-function norm(s=''){return String(s).toLowerCase().replace(/[《》〈〉「」『』【】\s:：·・\-—_.,，。!?！？'"()（）]/g,'')}
-function mergeEvidence(items){const verified=items.filter(x=>x.verification_status==='verified'),pending=items.filter(x=>x.verification_status!=='verified');return pending.map(p=>{const pt=norm(p.title);if(!pt||pt.includes('來源檢查')||pt.includes('官方來源'))return p;const hit=verified.find(v=>v.platform===p.platform&&(norm(v.title)===pt||norm(v.title).includes(pt)||pt.includes(norm(v.title))));return hit?{...hit,review_note:`二次官方來源驗證完成。原待確認來源：${p.source_url||'未提供'}；確認來源：${hit.source_url}`}:p})}
-export default async(req)=>{let body={};try{body=await req.json()}catch{}const query=String(body.query||'這週').trim()||'這週',q=range(query),year=+twToday().slice(0,4),store=getStore('ott-radar');const old=await store.get('releases.json',{type:'json'})||{items:[]};const previous=(old.items||[]).filter(safePrevious);const fresh=[],diagnostics=[];for(const source of SOURCES){const started=Date.now();try{const got=await scanPlatform(source,year);fresh.push(...got);diagnostics.push({platform:source.platform,status:'ok',verified:got.filter(x=>x.verification_status==='verified').length,pending:got.filter(x=>x.verification_status!=='verified').length,duration_ms:Date.now()-started})}catch(e){diagnostics.push({platform:source.platform,status:'error',verified:0,pending:0,duration_ms:Date.now()-started,error:String(e?.message||e)})}}
-const secondPass=mergeEvidence(fresh),scopedFresh=secondPass.filter(x=>x.verification_status!=='verified'||inScope(x,q));const items=dedupe([...previous,...scopedFresh]);const verified=items.filter(x=>x.verification_status==='verified'),pending=items.filter(x=>x.verification_status!=='verified');const payload={updated_at:now(),last_query:query,query_range:q,stats:{verified:verified.length,pending:pending.length},diagnostics,verification_flow:'live official scan + second-pass cross-check',items};await store.setJSON('releases.json',payload);console.log(`OTT radar: ${verified.length} verified / ${pending.length} pending`,JSON.stringify(diagnostics))};
+import {PARSER_VERSION,mergeReleases,safeRelease} from './_shared/releases.mjs';
+import {CURATED} from './_shared/curated.mjs';
+
+export default async(req)=>{
+  let body={};try{body=await req.json();}catch{}
+  const query=String(body.query||'這週').trim()||'這週',q=range(query),store=getStore('ott-radar');
+  const old=await store.get('releases.json',{type:'json'})||{items:[]};
+  // Preserve the original dataset before the first migration. Do not erase
+  // previous evidence while withdrawing unsafe dates from the published feed.
+  if(old.parser_version!==PARSER_VERSION&&old.items?.length){
+    const backupKey='releases-before-'+PARSER_VERSION+'.json';
+    if(!await store.get(backupKey,{type:'json'}))await store.setJSON(backupKey,old);
+  }
+  const fresh=[],diagnostics=[];
+  for(const source of SOURCES){
+    const started=Date.now();
+    try{
+      const got=await scanPlatform(source),health=got.health||[];
+      fresh.push(...got);
+      const errors=health.filter(x=>x.status!=='ok').length;
+      diagnostics.push({platform:source.platform,status:errors===health.length?'error':errors?'partial':'ok',
+        verified:got.filter(safeRelease).length,pending:got.filter(x=>!safeRelease(x)).length,
+        sources:health,duration_ms:Date.now()-started});
+    }catch(error){
+      diagnostics.push({platform:source.platform,status:'error',verified:0,pending:0,
+        duration_ms:Date.now()-started,error:String(error?.message||error)});
+    }
+  }
+  const items=mergeReleases([...CURATED.items,...(old.items||[]),...fresh]);
+  const verified=items.filter(safeRelease).length;
+  const payload={schema_version:3,parser_version:PARSER_VERSION,updated_at:now(),last_query:query,
+    query_range:q,stats:{verified,pending:items.length-verified},diagnostics,
+    verification_flow:'single-item evidence; exact-title merge; legacy dates quarantined',items};
+  await store.setJSON('releases.json',payload);
+  console.log('OTT radar: '+verified+' verified / '+(items.length-verified)+' pending',JSON.stringify(diagnostics));
+};
 export const config={background:true,path:'/.netlify/functions/refresh-background'};
