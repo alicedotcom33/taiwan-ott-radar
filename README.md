@@ -34,3 +34,12 @@ V1 用拖曳即可，但 V2 有 Functions 與排程，建議改成 GitHub + Netl
 5. scheduled-refresh 每天 UTC 22:00 執行，即台灣 06:00。
 
 正式資料欄位包含 source_url、source_published_at、fetched_at、verification_status、exclusive_claim_text。
+
+## 官方 FB 持續更新
+已建立 ChatGPT 每日台灣時間上午 08:00–09:00 的排程核對工作，自 2026-10-01 開始。這是與網站官網排程分開的瀏覽與發布流程：讀取七平台官方 FB、核對每作品證據、更新 `_shared/curated.mjs`、執行測試、合併 GitHub 並部署既有 Netlify 正式站。不是 Netlify Function 自動滑 FB，也不保證登入狀態或 FB 讀取可用。排程依賴 ChatGPT 工作及 GitHub／Netlify 工具連線保持有效；失敗必須回報。
+
+官網每天 06:00 的 Scheduled Function 繼續運作，所有查到的符合規則資料（含未來上線）均保留，不再只儲存本週。前台預設本週不沿用全站最後一次他人查詢區間。
+
+`_shared/curated.mjs` 是可持續追加的官方核對資料與七平台讀取狀態。FB 已驗證紀錄必須使用指定官方專頁的貼文網址、manual_review 逐作品證據；不允許其他帳號、分享短鏈結或未核對的自動 FB 紀錄。未讀到日期的熱播宣傳不能當新上架。前台顯示最後核對時間、每平台已讀筆數與 partial/login_required/error，讀取失敗不清除既有已驗證資料。
+
+2026-09-30 公開讀取僅取得六平台最新各一則，Netflix 登入受限、其他歷史貼文受限；新增 Disney+《你是真的媽?》2026-10-20，其他推薦劇不沿用同一日期。片單仍不完整。

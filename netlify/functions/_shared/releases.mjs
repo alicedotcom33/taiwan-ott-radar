@@ -10,6 +10,10 @@ const HOSTS = {
   MyVideo: ['www.myvideo.net.tw'],
   'LINE TV': ['www.linetv.tw'],
 };
+export const SOCIAL_PAGES = {
+  Netflix: 'netflixtw', 'Disney+': 'DisneyPlusTW', iQIYI: 'twiqiyi',
+  'friDay影音': 'FETVOD', 'Hami Video': 'CHTHamiVideo', MyVideo: 'MyvideoTWM', 'LINE TV': 'LINETV.taiwan',
+};
 
 export function normalizeTitle(value = '') {
   return String(value).toLowerCase().replace(/[《》〈〉「」『』【】\s:：·・\-—_.,，。!?！？'"()（）]/g, '');
@@ -24,7 +28,12 @@ export function validDate(value) {
 export function officialUrl(platform, value) {
   try {
     const url = new URL(value);
-    return url.protocol === 'https:' && !url.username && !url.password && HOSTS[platform]?.includes(url.hostname);
+    if(url.protocol !== 'https:' || url.username || url.password) return false;
+    if(HOSTS[platform]?.includes(url.hostname)) return true;
+    const parts=url.pathname.split('/').filter(Boolean);
+    return url.hostname==='www.facebook.com' && parts.length===3 &&
+      parts[0].toLowerCase()===SOCIAL_PAGES[platform]?.toLowerCase() && parts[1]==='posts' &&
+      /^(?:pfbid[A-Za-z0-9]+|\d+)$/.test(parts[2]);
   } catch { return false; }
 }
 
@@ -45,6 +54,7 @@ export function safeRelease(item) {
   if (item.verification_status !== 'verified' || !plausibleTitle(item.title) ||
       !['戲劇', '綜藝'].includes(item.content_type) || !validDate(item.release_date) ||
       !officialUrl(item.platform, item.source_url) || excludedUrl(item.source_url)) return false;
+  if(new URL(item.source_url).hostname==='www.facebook.com' && item.verification_method!=='manual_verified') return false;
   const scopes = item.verification_method === 'manual_verified' ? ['manual_review'] : ['single_item'];
   return Array.isArray(item.evidence) && item.evidence.some(e =>
     scopes.includes(e.scope) && (e.scope === 'manual_review' || e.parser_version === PARSER_VERSION) &&

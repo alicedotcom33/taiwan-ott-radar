@@ -2,6 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {parsePlatform,scanPlatform} from '../netlify/functions/parsers/platforms.mjs';
 import {mergeReleases,safeRelease,sanitizeItems} from '../netlify/functions/_shared/releases.mjs';
+import {CURATED} from '../netlify/functions/_shared/curated.mjs';
+
+test('curated FB evidence is scoped to the platform official page and manual review',()=>{
+  const item=CURATED.items.find(x=>x.platform==='Disney+');
+  assert.equal(safeRelease(item),true);
+  assert.equal(item.release_date,'2026-10-20');
+  const forged={...item,source_url:item.source_url.replace('DisneyPlusTW','someotherpage')};
+  assert.equal(safeRelease(forged),false);
+  assert.deepEqual(sanitizeItems([forged]),[]);
+  assert.equal(safeRelease({...item,verification_method:'automatic'}),false);
+  const merged=mergeReleases([...CURATED.items,{...item,verification_status:'pending',release_date:null}]);
+  assert.equal(merged.filter(x=>x.title===item.title).length,1);
+});
 
 const friday='https://video.friday.tw/show';
 function card(title,date='2026/9/28',kind='綜藝',id='100'){
