@@ -62,59 +62,96 @@ export const CURATED = {
   ]
 };
 export const SOCIAL_REVIEW = {
-  "checked_at": "2026-09-30T09:00:00.000Z",
-  "mode": "scheduled_agent_review",
-  "schedule_description": "每日台灣時間上午核對官方 FB；官網每日 06:00 自動掃描",
+  "checked_at": "2026-10-01T00:54:38.000Z",
+  "mode": "public_source_attempt",
+  "schedule_description": "上午核對可公開讀取的官方 FB；依使用者要求不使用雲端瀏覽器。官網原排程仍由 Netlify 執行。",
   "complete": false,
   "sources": [
     {
       "platform": "iQIYI",
       "page_url": "https://www.facebook.com/twiqiyi",
-      "status": "partial",
-      "posts_read": 1,
-      "note": "可讀最新貼文《我不是大師》熱播宣傳，未提供首播日期；較早貼文持續載入。"
+      "status": "error",
+      "posts_read": 0,
+      "note": "公開讀取回報 Online fetch throttled；未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
+      "checked_at": "2026-10-01T00:54:38.000Z",
+      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "complete": false,
+      "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
+      "last_successful_posts_read": 1
     },
     {
       "platform": "friDay影音",
       "page_url": "https://www.facebook.com/FETVOD/",
-      "status": "partial",
-      "posts_read": 1,
-      "note": "最新公告為 10 月电影片單，排除；較早貼文受限。"
+      "status": "login_required",
+      "posts_read": 0,
+      "note": "公開讀取返回登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
+      "checked_at": "2026-10-01T00:54:38.000Z",
+      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "complete": false,
+      "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
+      "last_successful_posts_read": 1
     },
     {
       "platform": "Netflix",
       "page_url": "https://www.facebook.com/netflixtw",
-      "status": "login_required",
+      "status": "error",
       "posts_read": 0,
-      "note": "此瀏覽器被導向登入頁，未完成 FB 核對。"
+      "note": "公開讀取回報 DisabledError；未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
+      "checked_at": "2026-10-01T00:54:38.000Z",
+      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "complete": false,
+      "last_successful_checked_at": null,
+      "last_successful_posts_read": 0
     },
     {
       "platform": "Disney+",
       "page_url": "https://www.facebook.com/DisneyPlusTW/",
-      "status": "partial",
-      "posts_read": 1,
-      "note": "確認《你是真的媽?》10/20 上線；其他推薦作品未提供日期；較早貼文受限。"
+      "status": "login_required",
+      "posts_read": 0,
+      "note": "公開讀取返回登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
+      "checked_at": "2026-10-01T00:54:38.000Z",
+      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "complete": false,
+      "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
+      "last_successful_posts_read": 1
     },
     {
       "platform": "Hami Video",
       "page_url": "https://www.facebook.com/CHTHamiVideo/",
-      "status": "partial",
-      "posts_read": 1,
-      "note": "最新貼文為亞運運動賽事，排除；較早貼文受限。"
+      "status": "login_required",
+      "posts_read": 0,
+      "note": "公開讀取導向登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
+      "checked_at": "2026-10-01T00:54:38.000Z",
+      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "complete": false,
+      "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
+      "last_successful_posts_read": 1
     },
     {
       "platform": "MyVideo",
       "page_url": "https://www.facebook.com/MyvideoTWM/",
-      "status": "partial",
-      "posts_read": 1,
-      "note": "最新《飛到我心上》陸劇宣傳未提供首播日期；較早貼文受限。"
+      "status": "login_required",
+      "posts_read": 0,
+      "note": "公開讀取返回登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
+      "checked_at": "2026-10-01T00:54:38.000Z",
+      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "complete": false,
+      "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
+      "last_successful_posts_read": 1
     },
     {
       "platform": "LINE TV",
       "page_url": "https://www.facebook.com/LINETV.taiwan/",
-      "status": "partial",
-      "posts_read": 1,
-      "note": "最新《再見1987》全集熱播宣傳未提供首播日期；較早貼文受限。"
+      "status": "login_required",
+      "posts_read": 0,
+      "note": "公開讀取返回登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
+      "checked_at": "2026-10-01T00:54:38.000Z",
+      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "complete": false,
+      "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
+      "last_successful_posts_read": 1
     }
-  ]
+  ],
+  "attempted_at": "2026-10-01T00:54:38.000Z",
+  "note": "本輪七平台均未取得可驗證的新貼文；搜尋未提供合格官方證據。這是讀取嘗試時間，不代表已完成 FB 滑動或最近30天回補。原有已驗證資料與 reviewed_at 保留。"
 };
