@@ -62,7 +62,7 @@ export const CURATED = {
   ]
 };
 export const SOCIAL_REVIEW = {
-  "checked_at": "2026-10-01T00:54:38.000Z",
+  "checked_at": "2026-10-11T00:42:00.000Z",
   "mode": "public_source_attempt",
   "schedule_description": "上午核對可公開讀取的官方 FB；依使用者要求不使用雲端瀏覽器。官網原排程仍由 Netlify 執行。",
   "complete": false,
@@ -73,8 +73,8 @@ export const SOCIAL_REVIEW = {
       "status": "error",
       "posts_read": 0,
       "note": "公開讀取回報 Online fetch throttled；未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
-      "checked_at": "2026-10-01T00:54:38.000Z",
-      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "checked_at": "2026-10-11T00:42:00.000Z",
+      "attempted_at": "2026-10-11T00:42:00.000Z",
       "complete": false,
       "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
       "last_successful_posts_read": 1
@@ -85,8 +85,8 @@ export const SOCIAL_REVIEW = {
       "status": "login_required",
       "posts_read": 0,
       "note": "公開讀取返回登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
-      "checked_at": "2026-10-01T00:54:38.000Z",
-      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "checked_at": "2026-10-11T00:42:00.000Z",
+      "attempted_at": "2026-10-11T00:42:00.000Z",
       "complete": false,
       "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
       "last_successful_posts_read": 1
@@ -97,8 +97,8 @@ export const SOCIAL_REVIEW = {
       "status": "error",
       "posts_read": 0,
       "note": "公開讀取回報 DisabledError；未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
-      "checked_at": "2026-10-01T00:54:38.000Z",
-      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "checked_at": "2026-10-11T00:42:00.000Z",
+      "attempted_at": "2026-10-11T00:42:00.000Z",
       "complete": false,
       "last_successful_checked_at": null,
       "last_successful_posts_read": 0
@@ -109,8 +109,8 @@ export const SOCIAL_REVIEW = {
       "status": "login_required",
       "posts_read": 0,
       "note": "公開讀取返回登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
-      "checked_at": "2026-10-01T00:54:38.000Z",
-      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "checked_at": "2026-10-11T00:42:00.000Z",
+      "attempted_at": "2026-10-11T00:42:00.000Z",
       "complete": false,
       "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
       "last_successful_posts_read": 1
@@ -121,8 +121,8 @@ export const SOCIAL_REVIEW = {
       "status": "login_required",
       "posts_read": 0,
       "note": "公開讀取導向登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
-      "checked_at": "2026-10-01T00:54:38.000Z",
-      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "checked_at": "2026-10-11T00:42:00.000Z",
+      "attempted_at": "2026-10-11T00:42:00.000Z",
       "complete": false,
       "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
       "last_successful_posts_read": 1
@@ -133,8 +133,8 @@ export const SOCIAL_REVIEW = {
       "status": "login_required",
       "posts_read": 0,
       "note": "公開讀取返回登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
-      "checked_at": "2026-10-01T00:54:38.000Z",
-      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "checked_at": "2026-10-11T00:42:00.000Z",
+      "attempted_at": "2026-10-11T00:42:00.000Z",
       "complete": false,
       "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
       "last_successful_posts_read": 1
@@ -145,13 +145,13 @@ export const SOCIAL_REVIEW = {
       "status": "login_required",
       "posts_read": 0,
       "note": "公開讀取返回登入／暫時封鎖頁（可能為快取），未取得新貼文全文。 未使用雲端瀏覽器；未完成從上輪延伸、最近30天回補與未來公告核對，不能據此判斷沒有上新。",
-      "checked_at": "2026-10-01T00:54:38.000Z",
-      "attempted_at": "2026-10-01T00:54:38.000Z",
+      "checked_at": "2026-10-11T00:42:00.000Z",
+      "attempted_at": "2026-10-11T00:42:00.000Z",
       "complete": false,
       "last_successful_checked_at": "2026-09-30T09:00:00.000Z",
       "last_successful_posts_read": 1
     }
   ],
-  "attempted_at": "2026-10-01T00:54:38.000Z",
+  "attempted_at": "2026-10-11T00:42:00.000Z",
   "note": "本輪七平台均未取得可驗證的新貼文；搜尋未提供合格官方證據。這是讀取嘗試時間，不代表已完成 FB 滑動或最近30天回補。原有已驗證資料與 reviewed_at 保留。"
 };
