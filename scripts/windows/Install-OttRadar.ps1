@@ -10,7 +10,10 @@ foreach ($id in @($owner,$system)) {
   $rule = New-Object Security.AccessControl.FileSystemAccessRule($id,'FullControl','ContainerInherit,ObjectInherit','None','Allow')
   $acl.AddAccessRule($rule)
 }
-Set-Acl -Path $folder -AclObject $acl
+# Persist only the modified access rules; do not request audit/SACL privileges.
+[IO.Directory]::SetAccessControl($folder,$acl)
+$access = [IO.Directory]::GetAccessControl($folder,[Security.AccessControl.AccessControlSections]::Access)
+if (!$access.AreAccessRulesProtected) { throw 'Folder permissions could not be secured. Nothing scheduled.' }
 $worker = @'
 param([switch]$Preview,[switch]$Force)
 $ErrorActionPreference = 'Stop'
