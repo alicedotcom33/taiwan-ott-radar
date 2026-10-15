@@ -81,8 +81,8 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
  const seen=new Set();items=items.filter(x=>x.rank>=1&&x.rank<=10&&x.title&&/^https:/.test(x.url)&&!seen.has(x.rank)&&seen.add(x.rank)).sort((a,b)=>a.rank-b.rank);
  return {items,period_label};
 }
-export async function scanRanking(source){const attempted_at=new Date().toISOString();try{const r=await fetch(source.platform==='iQIYI'?iqRequestUrl():source.url,{headers:{'accept-language':'zh-TW,zh;q=0.9','user-agent':'Mozilla/5.0'},signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('HTTP '+r.status);const parsed=parseRanking(source,await r.text());if(['Hami Video','Netflix','LINE TV','Disney+'].includes(source.platform))parsed.items=await enrichMetadata(source.platform,parsed.items);if(source.platform==='iQIYI')return {...source,...parsed,unverified_items:parsed.items,items:[],status:'unavailable',attempted_at,note:'此 API 回應與台灣使用者實際熱播榜不一致，尚未驗證地區／個人化差異；暫不顯示可能錯誤的名次。'};if(!parsed.items.length)throw new Error('官方排行榜區塊未取得可辨識名次。');return {...source,...parsed,status:parsed.items.length===10?'ok':'partial',attempted_at,checked_at:attempted_at,note:parsed.items.length===10?'':`官方可讀榜單取得 ${parsed.items.length} 筆；不補造名次。`};}catch(e){return {...source,status:'error',attempted_at,items:[],note:String(e.message||e)};}}
-export function retainRanking(fresh,old){if(fresh.platform==='iQIYI'&&old?.verified_snapshot_id&&['unavailable','error'].includes(fresh.status))return {...old,status:'partial',stale:true,attempted_at:fresh.attempted_at,unverified_items:fresh.unverified_items||old.unverified_items||[],note:'目前顯示 10/15 12:29 核對的台灣官方回應。自動來源仍與台灣官網不同，保留這份榜單；尚未完成自動更新。'};if(fresh.status==='error'&&old?.items?.length&&old.url===fresh.url&&old.label===fresh.label)return {...fresh,items:old.items,checked_at:old.checked_at,period_label:old.period_label,stale:true};if(fresh.platform==='iQIYI'&&old?.user_observed_reference)fresh={...fresh,user_observed_reference:old.user_observed_reference};if(fresh.platform==='Netflix'&&old?.items)fresh={...fresh,items:fresh.items.map(x=>{const previous=old.items.find(y=>y.title_evidence&&((y.title_id&&y.title_id===x.title_id&&y.season_number===x.season_number)||(y.ranking_video_id&&y.ranking_video_id===x.ranking_video_id&&y.season_number===x.season_number)||(fresh.period_label&&fresh.period_label===old.period_label&&x.original_title&&x.original_title===y.original_title)));return x.title_pending&&previous?{...x,title_id:previous.title_id,url:previous.url,title:previous.title,title_pending:false,title_evidence:previous.title_evidence,category:previous.category,category_evidence:previous.category_evidence}:x;})};if(fresh.items?.length&&old?.items&&old.url===fresh.url)fresh={...fresh,items:fresh.items.map(x=>{const previous=old.items.find(y=>y.url===x.url&&y.title===x.title&&y.category_evidence);return !x.category&&previous?{...x,category:previous.category,category_evidence:previous.category_evidence}:x;})};return fresh;}
+export async function scanRanking(source){const attempted_at=new Date().toISOString();try{const r=await fetch(source.platform==='iQIYI'?iqRequestUrl():source.url,{headers:{'accept-language':'zh-TW,zh;q=0.9','user-agent':'Mozilla/5.0'},signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('HTTP '+r.status);const parsed=parseRanking(source,await r.text());if(['Hami Video','Netflix','LINE TV','Disney+','friDay影音','MyVideo','LiTV','愛爾達'].includes(source.platform))parsed.items=await enrichMetadata(source.platform,parsed.items);if(source.platform==='iQIYI')return {...source,...parsed,unverified_items:parsed.items,items:[],status:'unavailable',attempted_at,note:'此 API 回應與台灣使用者實際熱播榜不一致，尚未驗證地區／個人化差異；暫不顯示可能錯誤的名次。'};if(!parsed.items.length)throw new Error('官方排行榜區塊未取得可辨識名次。');return {...source,...parsed,status:parsed.items.length===10?'ok':'partial',attempted_at,checked_at:attempted_at,note:parsed.items.length===10?'':`官方可讀榜單取得 ${parsed.items.length} 筆；不補造名次。`};}catch(e){return {...source,status:'error',attempted_at,items:[],note:String(e.message||e)};}}
+export function retainRanking(fresh,old){if(fresh.platform==='iQIYI'&&old?.verified_snapshot_id&&['unavailable','error'].includes(fresh.status))return {...old,status:'partial',stale:true,attempted_at:fresh.attempted_at,unverified_items:fresh.unverified_items||old.unverified_items||[],note:'目前顯示 10/15 12:29 核對的台灣官方回應。自動來源仍與台灣官網不同，保留這份榜單；尚未完成自動更新。'};if(fresh.status==='error'&&old?.items?.length&&old.url===fresh.url&&old.label===fresh.label)return {...fresh,items:old.items,checked_at:old.checked_at,period_label:old.period_label,stale:true};if(fresh.platform==='iQIYI'&&old?.user_observed_reference)fresh={...fresh,user_observed_reference:old.user_observed_reference};if(fresh.platform==='Netflix'&&old?.items)fresh={...fresh,items:fresh.items.map(x=>{const previous=old.items.find(y=>y.title_evidence&&((y.title_id&&y.title_id===x.title_id&&y.season_number===x.season_number)||(y.ranking_video_id&&y.ranking_video_id===x.ranking_video_id&&y.season_number===x.season_number)||(fresh.period_label&&fresh.period_label===old.period_label&&x.original_title&&x.original_title===y.original_title)));return x.title_pending&&previous?{...x,title_id:previous.title_id,url:previous.url,title:previous.title,title_pending:false,title_evidence:previous.title_evidence,category:previous.category,category_evidence:previous.category_evidence}:x;})};if(fresh.items?.length&&old?.items&&old.url===fresh.url)fresh={...fresh,items:fresh.items.map(x=>{const previous=old.items.find(y=>y.url===x.url&&y.title===x.title&&y.category_evidence);return !x.category&&previous?{...x,category:previous.category,category_evidence:previous.category_evidence}:x;})};if(fresh.items?.length&&old?.items&&old.url===fresh.url)fresh={...fresh,items:fresh.items.map(x=>{const previous=old.items.find(y=>y.url===x.url&&y.title===x.title&&y.cast?.length&&y.cast_evidence);return !x.cast?.length&&previous?{...x,cast:previous.cast,cast_evidence:previous.cast_evidence}:x;})};return fresh;}
 export function categoryLabel(country,type){
  const matches=[['韓國','韓'],['日本','日'],['中國大陸','陸'],['中國','陸'],['大陸','陸'],['台灣','台'],['臺灣','台'],['香港','港'],['泰國','泰']].filter(([name])=>country.includes(name));
  const regions=[...new Set(matches.map(x=>x[1]))];const prefix=regions.length===1?regions[0]:'';
@@ -124,8 +124,10 @@ export function parsePlatformMetadata(platform,html,entry){
   if(!entry.title_id||new URL(url).pathname!=='/tw/title/'+entry.title_id||!/[\u3400-\u9fff]/.test(title))return {};
   const genres=clean(html.match(/<h4[^>]*>類型<\/h4>\s*<span[^>]*>([\s\S]*?)<\/span>/)?.[1]||'');
   const type=/動畫|動漫/.test(genres)?'動漫':/實境|綜藝/.test(genres)?'綜藝':/戲劇|電視|劇/.test(genres)?'戲劇':'';
-  const category=categoryLabel(genres,type);
-  return {title:title+(entry.season_number>1?'：第'+entry.season_number+'季':''),original_title:entry.title,title_pending:false,title_evidence:{url,text:title},...(category?{category,category_evidence:{url,text:genres}}:{})};
+  const properties=clean(html.match(/<h4[^>]*>節目性質[^<]*<\/h4>\s*<span[^>]*>([\s\S]*?)<\/span>/)?.[1]||'');
+  const regionTags=properties.split(/[、，,和及]/).map(x=>x.trim()).filter(x=>['中國','中國大陸','台灣','臺灣','韓國','日本','泰國','香港'].includes(x)).join('|');
+  const category=categoryLabel(genres+'|'+regionTags,type);
+  return {...netflixCast(html,entry),title:title+(entry.season_number>1?'：第'+entry.season_number+'季':''),original_title:entry.title,title_pending:false,title_evidence:{url,text:title},...(category?{category,category_evidence:{url,text:JSON.stringify({genres,regionTags,properties})}}:{})};
  }
  if(platform==='LINE TV'){
   try{
@@ -133,7 +135,7 @@ export function parsePlatformMetadata(platform,html,entry){
    const genres=(d.genres||[]).map(x=>x.key),channels=(state.channelList?.channelList||[]).filter(x=>d.channelIds?.includes(x.id)).map(x=>x.name);
    const type=channels.includes('短劇')?'短劇':channels.includes('動畫')?'動漫':channels.includes('綜藝')?'綜藝':channels.includes('電影')?'電影':channels.includes('戲劇')?'戲劇':'';
    const category=type==='短劇'?'短劇':categoryLabel(genres.join('|'),type);
-   return category?{category,category_evidence:{url,text:JSON.stringify({name:d.drama_name,genres,channels})}}:{};
+   return {...castResult((d.actors||[]).map(x=>x.name),url),...(category?{category,category_evidence:{url,text:JSON.stringify({name:d.drama_name,genres,channels})}}:{})};
   }catch{return {};}
  }
  if(platform==='Disney+'){
@@ -141,15 +143,39 @@ export function parsePlatformMetadata(platform,html,entry){
    const raw=html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)?.[1],data=JSON.parse(raw),parts=data.props?.pageProps?.stitchDocument?.mainContent||[],d=parts.find(x=>x._type==='MediaDetails'&&clean(x.title)===entry.title);if(!d)return {};
    const type=d.customFields?.find(x=>x.heading==='類別：')?.value,genres=d.genres||[];
    const category=genres.includes('動畫')?(type==='電影'?'動畫電影':'動漫'):type==='影集'?'影集':type==='電影'?'電影':'';
-   return category?{category,category_evidence:{url,text:JSON.stringify({name:d.title,type,genres})}}:{};
+   return {...castResult((d.credits?.find(x=>/主演|演員/.test(x.heading||''))?.items||[]).map(x=>x.displayText),url),...(category?{category,category_evidence:{url,text:JSON.stringify({name:d.title,type,genres})}}:{})};
   }catch{return {};}
  }
- return parseCategory(html,url);
+ return {...parseCategory(html,url),...structuredCast(html,entry)};
 }
 async function enrichMetadata(platform,items){
  const out=[];for(let i=0;i<items.length;i+=5){out.push(...await Promise.all(items.slice(i,i+5).map(async x=>{
+  if(platform==='愛爾達'&&x.category==='運動')return x;
   const fallback=platform==='Netflix'?{...x,original_title:x.title,title_pending:true,title:'中文片名待確認（第'+x.rank+'名）'}:x;
   if(platform==='Netflix'&&!x.title_id)return fallback;
   try{const r=await fetch(x.url,{headers:{'accept-language':'zh-TW,zh;q=0.9'},signal:AbortSignal.timeout(25000)});if(r.ok){let entry=x;if(platform==='Netflix'){const final=new URL(r.url);if(final.hostname!=='www.netflix.com'||!/^\/tw\/title\/\d+$/.test(final.pathname))return fallback;if(final.pathname!==new URL(x.url).pathname){if(x.title_id!==x.ranking_video_id)return fallback;entry={...x,url:final.href,title_id:final.pathname.split('/').at(-1),title_redirect_evidence:{requested_url:x.url,resolved_url:final.href}};}}const metadata=parsePlatformMetadata(platform,await r.text(),entry);return {...fallback,...(platform==='Netflix'&&metadata.title?{title_id:entry.title_id,url:entry.url,title_redirect_evidence:entry.title_redirect_evidence}:{}),...metadata};}}catch{}return fallback;
  })));}return out;
 }
+
+function actorNames(value){return Array.isArray(value)?value.flatMap(actorNames):typeof value==='string'?[value]:value&&typeof value==='object'?actorNames(value.name):[];}
+function castResult(names,url){const cast=[...new Set(actorNames(names).map(clean).filter(n=>n&&n.length<=100))].slice(0,2);return cast.length?{cast,cast_evidence:{url,text:JSON.stringify(cast)}}:{};}
+function netflixCast(html,entry){const m=/"persons":\{"actors":(\[[\s\S]*?\])/.exec(html);if(!m||!html.slice(Math.max(0,m.index-800),m.index).includes('"topLevelVideoId":'+entry.title_id))return {};try{return castResult(JSON.parse(m[1]).map(x=>x.name),entry.url);}catch{return {};}}
+export function structuredCast(html,entry){
+ try{
+  const raw=html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)?.[1];
+  if(raw){const state=JSON.parse(raw),p=state.props?.pageProps?.programInformation;if(p&&p.title===entry.title&&new URL(entry.url).pathname.endsWith('/'+p.content_id)){const out=castResult(p.credits?.find(x=>x.type==='actor')?.list||[],entry.url);if(out.cast)return out;}
+   const a=state.props?.initialState?.album?.videoAlbumInfo,id=new URL(entry.url).pathname.match(/-([a-z0-9]+)$/)?.[1];if(a&&id&&a.albumLocSuffix?.split('?')[0].endsWith('-'+id)){const out=castResult(a.actorArr||[],entry.url);if(out.cast)return out;}
+  }
+ }catch{}
+ if(new URL(entry.url).hostname==='video.friday.tw'){
+  const title=clean(html.match(/<title>([\s\S]*?)<\/title>/)?.[1]||'');if(title.includes(entry.title)){
+   const body=section(html,'group-info_tag','</section>');const block=body.match(/<p[^>]*class="item-title item-director"[^>]*>\s*<span>(?:演員|主演|主持人)<\/span>\s*<\/p>([\s\S]*?)<\/ul>/)?.[1];if(block){const out=castResult([...block.matchAll(/<a\b[^>]*href="\/search\?key=[^>]+>([\s\S]*?)<\/a>/g)].map(x=>clean(x[1])),entry.url);if(out.cast)return out;}
+  }
+ }
+
+ for(const m of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){
+  try{const d=JSON.parse(m[1]),list=Array.isArray(d)?d:d['@graph']||[d];for(const x of list){if(clean(x.name)!==entry.title)continue;if(x.url&&new URL(x.url,entry.url).pathname!==new URL(entry.url).pathname)continue;const actors=x.actor||x.actors;if(!actors)continue;const out=castResult(actors,entry.url);if(out.cast)return out;}}catch{}
+ }
+ return {};
+}
+export async function enrichIqCast(items){return enrichMetadata('iQIYI',items);}

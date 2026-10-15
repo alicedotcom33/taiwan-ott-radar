@@ -1,0 +1,2 @@
+// Public verification key only. The matching private key never leaves the paired Windows PC.
+export const PAIRED_PUBLIC_JWK={"e":"AQAB","n":"swZuYCSNS7apSR_EHz3y7xb8J_uaMrO57eAFLFWs80v6gxw5QKzjZTVgOlQf9oRG4e7TmtLEjVQOhvnOBB0Gkbo8H6gzcWYFuKTMxTgNIx1t5x9sM7CrFlCqLa9EsPJJQSf3RsGHR2_TwzeSfu3Dk5RW-kJB1EGINmBqQuSxws2dQnAgTCpmK0yKSeTjEBDQbg5arHEpebTUrRiha8l6VD3bX49lwpEDlpcGyvSs7Au0ie3QlpmqzGr52HhpjEahUNetCHZe64qIGNYCjUZTMNkFRERMVSL4V7Y3XhtI4Tp5TK3jHX6ot0xq4wYbO4ZoiBGU9nR8hh9BHf9tW_gTsQ","kty":"RSA"};
