@@ -3,9 +3,9 @@ import {getStore} from '@netlify/blobs';
 import {SOURCES,scanRanking,retainRanking} from './_shared/rankings.mjs';
 export default async()=>{
  const store=getStore('ott-radar'),cached=await store.get('rankings.json',{type:'json'});
- const old=cached?.schema_version===6?cached:INITIAL_RANKINGS;
+ const old=cached?.schema_version===7?cached:INITIAL_RANKINGS;
  const fresh=await Promise.all(SOURCES.map(scanRanking));
  const boards=fresh.map(b=>retainRanking(b,old.boards.find(x=>x.platform===b.platform)));
- await store.setJSON('rankings.json',{schema_version:6,updated_at:new Date().toISOString(),boards});
+ await store.setJSON('rankings.json',{schema_version:7,updated_at:new Date().toISOString(),boards});
 };
 export const config={background:true,path:'/.netlify/functions/refresh-background'};
