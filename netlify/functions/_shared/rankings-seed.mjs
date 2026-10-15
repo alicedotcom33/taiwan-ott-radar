@@ -1,6 +1,6 @@
 export const INITIAL_RANKINGS = {
-  "schema_version": 5,
-  "updated_at": "2026-10-15T03:30:30.793Z",
+  "schema_version": 6,
+  "updated_at": "2026-10-15T03:40:39.978Z",
   "boards": [
     {
       "platform": "Netflix",
@@ -595,12 +595,123 @@ export const INITIAL_RANKINGS = {
       "url": "https://www.iq.com/ranking?lang=zh_tw",
       "label": "熱播榜",
       "period": "unspecified",
-      "items": [],
+      "items": [
+        {
+          "rank": 1,
+          "title": "魅影神捕",
+          "url": "https://www.iq.com/album/%E9%AD%85%E5%BD%B1%E7%A5%9E%E6%8D%95-2026-27mstpb8t4t?lang=zh_tw",
+          "image": "https://pic0.iqiyipic.com/image/20261010/4d/52/a_100646314_m_601_zh-TW_m7.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"魅影神捕\",\"tags\":\"中國大陸|懸疑|古裝|普通話\",\"channel_id\":\"2\"}"
+          }
+        },
+        {
+          "rank": 2,
+          "title": "一甌春",
+          "url": "https://www.iq.com/album/%E4%B8%80%E7%94%8C%E6%98%A5-2026-1nby7voujqx?lang=zh_tw",
+          "image": "https://pic0.iqiyipic.com/image/20261010/3a/18/a_100805016_m_601_zh-TW_m6.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"一甌春\",\"tags\":\"中國大陸|愛情|古裝|普通話|古代\",\"channel_id\":\"2\"}"
+          }
+        },
+        {
+          "rank": 3,
+          "title": "你卻愛著一個他",
+          "url": "https://www.iq.com/album/%E4%BD%A0%E5%8D%BB%E6%84%9B%E8%91%97%E4%B8%80%E5%80%8B%E4%BB%96-2026-1vby5hezxel?lang=zh_tw",
+          "image": "https://pic7.iqiyipic.com/image/20261008/f9/ae/a_101214889_m_601_zh-TW.jpg",
+          "category": "泰劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"你卻愛著一個他\",\"tags\":\"泰國|愛情|泰語|BL&GL\",\"channel_id\":\"2\"}"
+          }
+        },
+        {
+          "rank": 4,
+          "title": "同床異夢",
+          "url": "https://www.iq.com/album/%E5%90%8C%E5%BA%8A%E7%95%B0%E5%A4%A2-2026-13hf54c3czx?lang=zh_tw",
+          "image": "https://pic5.iqiyipic.com/image/20260918/01/7d/a_101338195_m_601_en.jpg",
+          "category": "戲劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"同床異夢\",\"tags\":\"印度尼西亞|愛情|婚姻|印尼語|劇情\",\"channel_id\":\"2\"}"
+          }
+        },
+        {
+          "rank": 5,
+          "title": "狂熱先生",
+          "url": "https://www.iq.com/album/%E7%8B%82%E7%86%B1%E5%85%88%E7%94%9F-2026-16idaae4ye9?lang=zh_tw",
+          "image": "https://pic1.iqiyipic.com/image/20260831/05/6a/a_101368218_m_601_zh-TW_m1.jpg",
+          "category": "泰劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"狂熱先生\",\"tags\":\"泰國|愛情|泰語|偶像|BL&GL\",\"channel_id\":\"2\"}"
+          }
+        },
+        {
+          "rank": 6,
+          "title": "逐玉",
+          "url": "https://www.iq.com/album/%E9%80%90%E7%8E%89-2026-19vub7xxrwd?lang=zh_tw",
+          "image": "https://pic7.iqiyipic.com/image/20260624/9b/8f/a_100610796_m_601_zh-TW_m21.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"逐玉\",\"tags\":\"中國大陸|愛情|古裝|普通話|古代\",\"channel_id\":\"2\"}"
+          }
+        },
+        {
+          "rank": 7,
+          "title": "可以愛你嗎",
+          "url": "https://www.iq.com/album/%E5%8F%AF%E4%BB%A5%E6%84%9B%E4%BD%A0%E5%97%8E-2026-wopu9fjxm5?lang=zh_tw",
+          "image": "https://pic5.iqiyipic.com/image/20260908/04/63/a_101459714_m_601_zh-TW.jpg",
+          "category": "泰劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"可以愛你嗎\",\"tags\":\"泰國|愛情|都市|泰語|BL&GL\",\"channel_id\":\"2\"}"
+          }
+        },
+        {
+          "rank": 8,
+          "title": "雀骨",
+          "url": "https://www.iq.com/album/%E9%9B%80%E9%AA%A8-2026-25lwyc1zim1?lang=zh_tw",
+          "image": "https://pic8.iqiyipic.com/image/20260828/10/b7/a_100654641_m_601_zh-TW_m18.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"雀骨\",\"tags\":\"中國大陸|愛情|古裝|普通話|古代\",\"channel_id\":\"2\"}"
+          }
+        },
+        {
+          "rank": 9,
+          "title": "愛你",
+          "url": "https://www.iq.com/album/%E6%84%9B%E4%BD%A0-2025-jyxh2xvlfp?lang=zh_tw",
+          "image": "https://pic1.iqiyipic.com/image/20250626/8b/56/a_100572218_m_601_zh-TW_m16.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"愛你\",\"tags\":\"中國大陸|愛情|青春|普通話|偶像|醫療|文學改編|甜寵\",\"channel_id\":\"2\"}"
+          }
+        },
+        {
+          "rank": 10,
+          "title": "一笑隨歌",
+          "url": "https://www.iq.com/album/%E4%B8%80%E7%AC%91%E9%9A%A8%E6%AD%8C-2025-d6iyehcx4p?lang=zh_tw",
+          "image": "https://pic6.iqiyipic.com/image/20251204/5d/58/a_100590378_m_601_zh-TW_m9.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.iq.com/ranking?lang=zh_tw",
+            "text": "{\"title\":\"一笑隨歌\",\"tags\":\"中國大陸|愛情|古裝|普通話\",\"channel_id\":\"2\"}"
+          }
+        }
+      ],
       "period_label": "官方未公布統計週期",
-      "status": "error",
-      "attempted_at": "2026-10-15T03:25:44.428Z",
-      "checked_at": null,
-      "note": "指定的排行榜頁回傳 mod=us，熱播榜 videos 為空；未取得台灣名次。"
+      "status": "ok",
+      "checked_at": "2026-10-15T03:40:39.978Z",
+      "attempted_at": "2026-10-15T03:40:39.978Z",
+      "note": "官方 ntw 區域繁體中文熱播榜；依原始名次。"
     },
     {
       "platform": "愛爾達",

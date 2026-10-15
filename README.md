@@ -13,7 +13,7 @@
 |MyVideo|本日戲劇榜|本日；未取得公開綜合榜，不假稱綜合榜|
 |LINE TV|10 大熱門節目|官方未公布統計週期|
 |愛爾達|首頁熱門排行榜|官網未公布週期；依原榜包含運動與戲劇|
-|iQIYI|指定 ranking 頁熱播榜|公開伺服器回傳其他地區設定或空排名時標示讀取受限，不冒充台灣榜|
+|iQIYI|指定 ranking 頁熱播榜|官方 pcw_common API，mod=ntw、lang=zh_tw，依明示名次|
 
 榜單忠實保留官方原始前十名，綜合榜包含電影、動畫等類型。各平台的統計範圍不同，不作跨平台排名。Netflix 公開宣傳首頁會因讀取環境回傳不同片單；/tw/ 網址與繁體中文標題都不能證明榜單地區。改採使用者指定的官方台灣節目週榜，不宣稱為會員今日榜。取得時間與榜單統計日期分開顯示。
 
@@ -23,7 +23,7 @@ Netlify `scheduled-refresh` 每天 UTC 22:00（台灣 06:00）呼叫 `refresh-ba
 
 每個來源保留 attempted_at、checked_at、status、period_label、原始來源網址。讀取失敗時保留最後成功榜單與時間，標示 stale，不能宣稱已更新。首份已核對官方 HTML 的榜單以 rankings-seed.mjs 提供冷啟動資料。
 
-iQIYI 官網依請求地區回傳不同內容，lang=zh_tw 不能證明為台灣榜；解析器必須檢查地區。讀不到台灣排名時不借用美國或全球榜，不把推薦清單當成排行榜。
+iQIYI 使用官方 api.iq.com/page/pcw_common 的 ntw 區域繁體中文 ranking_web 資料，只讀取熱播榜 pcw_rank_list 的 blocks 及 statistics.rank（0 起算）。必須同時核對回應 mod=ntw、lang=zh_tw，不混入期待榜或飆升榜。公開 API 不需要登入 Cookie，請求使用新產生的暫時識別碼，不儲存或重用使用者提供的裝置識別碼。
 
 舊上新紀錄、curated 模組與 releases.json 保留，前台與每日刷新已切換至排行榜，不再依賴 FB 登入。
 
