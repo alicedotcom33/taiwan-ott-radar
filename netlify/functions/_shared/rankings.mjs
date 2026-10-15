@@ -5,7 +5,8 @@ export const SOURCES=[
  {platform:'Hami Video',url:'https://hamivideo.hinet.net/index.do',label:'本週人氣榜',period:'weekly'},
  {platform:'MyVideo',url:'https://www.myvideo.net.tw/rank/drama/',label:'本日戲劇榜',period:'daily'},
  {platform:'LINE TV',url:'https://www.linetv.tw/',label:'10 大熱門節目',period:'unspecified'},
- {platform:'iQIYI',url:'https://www.iq.com/ranking?lang=zh_tw',label:'熱播榜',period:'unspecified'}
+ {platform:'iQIYI',url:'https://www.iq.com/ranking?lang=zh_tw',label:'熱播榜',period:'unspecified'},
+ {platform:'愛爾達',url:'https://eltaott.tv/',label:'熱門排行榜',period:'unspecified'}
 ];
 const decode=s=>String(s||'').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#(?:39|x27);/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
 const clean=s=>decode(s).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
@@ -24,7 +25,7 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
   const body=section(html,'data-uia="top10-cards"','</ul>');
   for(const m of body.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)){
    const rank=m[1].match(/#top10-num-(\d+)/)?.[1],logo=m[1].match(/data-uia="top10-card-logo"[\s\S]*?<img\b[^>]*>/)?.[0]||'',link=m[1].match(/<a\b[^>]*data-uia="play-on-netflix-link"[^>]*>/)?.[0]||'';
-   if(rank&&link)items.push(item(source,rank,attr(logo,'alt'),attr(link,'href'),m[1].match(/background-image:url\(([^)]+)\)/)?.[1]));
+   if(rank&&attr(logo,'alt'))items.push(item(source,rank,attr(logo,'alt'),attr(link,'href')||source.url,m[1].match(/background-image:url\(([^)]+)\)/)?.[1]));
   }
   period_label=html.match(/\d{1,2}\/\d{1,2}\/\d{2} - \d{1,2}\/\d{1,2}\/\d{2}/)?.[0]||'官方週榜';
  }else if(source.platform==='Disney+'){
@@ -46,6 +47,12 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
   }period_label=html.match(/\/rank\/drama\/daily-(\d{8})\//)?.[1]||'本日戲劇榜';
  }else if(source.platform==='LINE TV'){
   const raw=html.match(/window\.__INITIAL_STATE__\s*=\s*(\{[\s\S]*?\})\s*<\/script>/)?.[1];if(raw){const d=JSON.parse(raw);const board=d.ssrData?.indexData?.find(x=>x.type==='top10'&&x.title==='10 大熱門節目');items=(board?.datas||[]).slice(0,10).map((x,i)=>item(source,i+1,x.name,'/drama/'+x.dramaId+'/eps/1',x.verticalPosterUrl||x.posterUrl));}
+ }else if(source.platform==='愛爾達'){
+  const body=section(html,'<h2 class="h2Complicate">熱門排行榜</h2>','<div class="h2Div">');
+  for(const m of body.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)){
+   const rank=m[2].match(/class="lebleTop\d+">(\d+)</)?.[1],img=m[2].match(/<img\b[^>]*>/)?.[0]||'';
+   if(rank){const x=item(source,rank,attr(img,'alt')||clean(m[2].match(/<h3>([\s\S]*?)<\/h3>/)?.[1]),m[1],attr(img,'src'));x.category=/\/sports\//.test(x.url)?'運動':/\/drama\//.test(x.url)?'戲劇':'';if(x.category)x.category_evidence={url:source.url,text:x.url};items.push(x);}
+  }
  }else if(source.platform==='iQIYI'){
   const raw=html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)?.[1];if(raw){const d=JSON.parse(raw),state=d.props?.initialState,board=state?.commonConfig?.ranking_web;const locale=board?.base?.statistics?.pb_str||'';
    // Never publish a US/global list as Taiwan merely because lang=zh_tw was requested.

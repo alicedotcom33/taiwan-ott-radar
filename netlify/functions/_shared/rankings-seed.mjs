@@ -1,6 +1,6 @@
 export const INITIAL_RANKINGS = {
-  "schema_version": 4,
-  "updated_at": "2026-10-15T03:25:44.428Z",
+  "schema_version": 5,
+  "updated_at": "2026-10-15T03:30:30.793Z",
   "boards": [
     {
       "platform": "Netflix",
@@ -601,6 +601,129 @@ export const INITIAL_RANKINGS = {
       "attempted_at": "2026-10-15T03:25:44.428Z",
       "checked_at": null,
       "note": "指定的排行榜頁回傳 mod=us，熱播榜 videos 為空；未取得台灣名次。"
+    },
+    {
+      "platform": "愛爾達",
+      "url": "https://eltaott.tv/",
+      "label": "熱門排行榜",
+      "period": "unspecified",
+      "items": [
+        {
+          "rank": 1,
+          "title": "2026 F1一級方程式賽車",
+          "url": "https://eltaott.tv/sports/play/1/2079",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3428_vertical.jpg",
+          "category": "運動",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/sports/play/1/2079"
+          }
+        },
+        {
+          "rank": 2,
+          "title": "御廷謠",
+          "url": "https://eltaott.tv/drama/play/2/2395",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3741_vertical.jpg",
+          "category": "戲劇",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/drama/play/2/2395"
+          }
+        },
+        {
+          "rank": 3,
+          "title": "花開錦繡",
+          "url": "https://eltaott.tv/drama/play/2/2349",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3695_vertical.jpg",
+          "category": "戲劇",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/drama/play/2/2349"
+          }
+        },
+        {
+          "rank": 4,
+          "title": "莫離",
+          "url": "https://eltaott.tv/drama/play/2/2290",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3636_vertical.jpg",
+          "category": "戲劇",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/drama/play/2/2290"
+          }
+        },
+        {
+          "rank": 5,
+          "title": "2026-27 歐洲國家足球聯賽",
+          "url": "https://eltaott.tv/sports/play/1/2151",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3497_vertical.jpg",
+          "category": "運動",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/sports/play/1/2151"
+          }
+        },
+        {
+          "rank": 6,
+          "title": "2026 MLB 美國職棒大聯盟",
+          "url": "https://eltaott.tv/sports/play/1/2150",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3495_vertical.jpg",
+          "category": "運動",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/sports/play/1/2150"
+          }
+        },
+        {
+          "rank": 7,
+          "title": "2026-27 英格蘭超級足球聯賽",
+          "url": "https://eltaott.tv/sports/play/1/2243",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3588_vertical.jpg",
+          "category": "運動",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/sports/play/1/2243"
+          }
+        },
+        {
+          "rank": 8,
+          "title": "2026-27 NBA美國職籃",
+          "url": "https://eltaott.tv/sports/play/1/2385",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3729_vertical.png",
+          "category": "運動",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/sports/play/1/2385"
+          }
+        },
+        {
+          "rank": 9,
+          "title": "藏海傳",
+          "url": "https://eltaott.tv/drama/play/2/2180",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3526_vertical.jpg",
+          "category": "戲劇",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/drama/play/2/2180"
+          }
+        },
+        {
+          "rank": 10,
+          "title": "2026-27 歐國聯精華",
+          "url": "https://eltaott.tv/sports/play/1/2314",
+          "image": "https://piceltaott-elta.cdn.hinet.net/production/upload/vod/3668_vertical.jpg",
+          "category": "運動",
+          "category_evidence": {
+            "url": "https://eltaott.tv/",
+            "text": "https://eltaott.tv/sports/play/1/2314"
+          }
+        }
+      ],
+      "period_label": "官方未公布統計週期",
+      "status": "ok",
+      "attempted_at": "2026-10-15T03:30:30.793Z",
+      "checked_at": "2026-10-15T03:30:30.793Z",
+      "note": ""
     }
   ]
 };
