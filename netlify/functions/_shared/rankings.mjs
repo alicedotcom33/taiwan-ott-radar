@@ -1,5 +1,5 @@
 export const SOURCES=[
- {platform:'Netflix',url:'https://www.netflix.com/tudum/top10/taiwan/tv',label:'台灣節目週榜',period:'weekly'},
+ {platform:'Netflix',url:'https://www.netflix.com/tw/',label:'台灣首頁現正熱播',period:'unspecified'},
  {platform:'friDay影音',url:'https://video.friday.tw/ranking/1',label:'最多人觀看',period:'unspecified'},
  {platform:'Disney+',url:'https://www.disneyplus.com/zh-tw',label:'台灣本日熱播 Top 10',period:'daily'},
  {platform:'Hami Video',url:'https://hamivideo.hinet.net/index.do',label:'本月最熱門',period:'unspecified'},
@@ -20,12 +20,13 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
    items.push(item(source,m[1],attr(a[0],'title'),attr(a[0],'href'),attr(m[2].match(/<img\b[^>]*data-src=[^>]+>/)?.[0]||'','data-src')));
   }
  }else if(source.platform==='Netflix'){
-  const body=section(html,'data-uia="top10-cards"','</ul>');
-  for(const m of body.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)){
-   const rank=m[1].match(/#top10-num-(\d+)/)?.[1],logo=m[1].match(/data-uia="top10-card-logo"[\s\S]*?<img\b[^>]*>/)?.[0]||'',link=m[1].match(/<a\b[^>]*data-uia="play-on-netflix-link"[^>]*>/)?.[0]||'';
-   if(rank&&link)items.push(item(source,rank,attr(logo,'alt'),attr(link,'href'),m[1].match(/background-image:url\(([^)]+)\)/)?.[1]));
-  }
-  period_label=html.match(/\d{1,2}\/\d{1,2}\/\d{2} - \d{1,2}\/\d{1,2}\/\d{2}/)?.[0]||'官方週榜';
+  // Require the Taiwan marketing homepage, not a global or weekly Top 10 list.
+  if(!/<title>Netflix台灣/.test(html))return {items:[],period_label:'台灣首頁'};
+  const body=section(html,'現正熱播</h2>','</ul>');
+  for(const m of body.matchAll(/<button\b[^>]*data-uia="top-10-element-(\d+)"[^>]*>([\s\S]*?)<\/button>/g)){
+   const title=m[2].match(/<\/span>([^<]+)<\/div>/)?.[1];
+   if(title)items.push(item(source,m[1],title,source.url,m[2].match(/background-image:url\(([^)]+)\)/)?.[1]));
+  }period_label='官網現正熱播 · 未公布統計區間';
  }else if(source.platform==='Disney+'){
   const body=section(html,'台灣本日熱播 Top 10','</ul>');
   for(const m of body.matchAll(/<li\b[^>]*data-testid="collection-tile-(\d+)"[^>]*>([\s\S]*?)<\/li>/g)){
@@ -55,4 +56,4 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
  return {items,period_label};
 }
 export async function scanRanking(source){const attempted_at=new Date().toISOString();try{const r=await fetch(source.url,{headers:{'accept-language':'zh-TW,zh;q=0.9','user-agent':'Mozilla/5.0'},signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('HTTP '+r.status);const parsed=parseRanking(source,await r.text());if(!parsed.items.length)throw new Error(source.platform==='iQIYI'?'公開頁未提供可核對的台灣排名；未採用其他地區榜單。':'官方排行榜區塊未取得可辨識名次。');return {...source,...parsed,status:parsed.items.length===10?'ok':'partial',attempted_at,checked_at:attempted_at,note:parsed.items.length===10?'':`官方可讀榜單取得 ${parsed.items.length} 筆；不補造名次。`};}catch(e){return {...source,status:'error',attempted_at,items:[],note:String(e.message||e)};}}
-export function retainRanking(fresh,old){if(fresh.status==='error'&&old?.items?.length)return {...fresh,items:old.items,checked_at:old.checked_at,period_label:old.period_label,stale:true};return fresh;}
+export function retainRanking(fresh,old){if(fresh.status==='error'&&old?.items?.length&&old.url===fresh.url)return {...fresh,items:old.items,checked_at:old.checked_at,period_label:old.period_label,stale:true};return fresh;}
