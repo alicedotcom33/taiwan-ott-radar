@@ -54,15 +54,22 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
    if(rank){const x=item(source,rank,attr(img,'alt')||clean(m[2].match(/<h3>([\s\S]*?)<\/h3>/)?.[1]),m[1],attr(img,'src'));x.category=/\/sports\//.test(x.url)?'運動':/\/drama\//.test(x.url)?'戲劇':'';if(x.category)x.category_evidence={url:source.url,text:x.url};items.push(x);}
   }
  }else if(source.platform==='iQIYI'){
-  const raw=html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)?.[1];if(raw){const d=JSON.parse(raw),state=d.props?.initialState,board=state?.commonConfig?.ranking_web;const locale=board?.base?.statistics?.pb_str||'';
-   // Never publish a US/global list as Taiwan merely because lang=zh_tw was requested.
-   if(/mod=tw(?:&|$)/.test(locale)){const card=board.cards?.find(x=>x.card_type==='pcw_rank_list'&&/热播|熱播/.test(x.name));items=(card?.videos||[]).slice(0,10).map((x,i)=>item(source,i+1,x.title||x.name,x.pageUrl||x.url,x.imageUrl||x.img));}
+  let data;try{data=JSON.parse(html);}catch{return {items:[],period_label:'熱播榜'};}
+  const locale=data.base?.statistics?.pb_str||'';
+  // ntw is the region used by the user's Taiwan official ranking request.
+  if(data.code===0&&/(?:^|&)mod=ntw(?:&|$)/.test(locale)&&/(?:^|&)lang=zh_tw(?:&|$)/.test(locale)){
+   const card=data.cards?.find(x=>x.card_type==='pcw_rank_list'&&/热播榜|熱播榜/.test(x.name||''));
+   for(const x of card?.blocks||[]){const kv=x.kv_pair||{},r=Number(x.statistics?.rank);if(!Number.isInteger(r)||r<0||r>9||!x.title||!kv.loc_suffix_album)continue;
+    const entry=item(source,r+1,x.title,'https://www.iq.com/album/'+kv.loc_suffix_album,(x.image?.url||'').replace(/^http:/,'https:'));
+    const type={'2':'戲劇','6':'綜藝','1':'電影','4':'動漫'}[kv.channel_id]||'';entry.category=categoryLabel(kv.tags||'',type);if(entry.category)entry.category_evidence={url:source.url,text:JSON.stringify({title:x.title,tags:kv.tags,channel_id:kv.channel_id})};items.push(entry);
+   }
   }
+
  }
  const seen=new Set();items=items.filter(x=>x.rank>=1&&x.rank<=10&&x.title&&/^https:/.test(x.url)&&!seen.has(x.rank)&&seen.add(x.rank)).sort((a,b)=>a.rank-b.rank);
  return {items,period_label};
 }
-export async function scanRanking(source){const attempted_at=new Date().toISOString();try{const r=await fetch(source.url,{headers:{'accept-language':'zh-TW,zh;q=0.9','user-agent':'Mozilla/5.0'},signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('HTTP '+r.status);const parsed=parseRanking(source,await r.text());if(source.platform==='Hami Video')parsed.items=await enrichHami(parsed.items);if(!parsed.items.length)throw new Error(source.platform==='iQIYI'?'公開頁未提供可核對的台灣排名；未採用其他地區榜單。':'官方排行榜區塊未取得可辨識名次。');return {...source,...parsed,status:parsed.items.length===10?'ok':'partial',attempted_at,checked_at:attempted_at,note:parsed.items.length===10?'':`官方可讀榜單取得 ${parsed.items.length} 筆；不補造名次。`};}catch(e){return {...source,status:'error',attempted_at,items:[],note:String(e.message||e)};}}
+export async function scanRanking(source){const attempted_at=new Date().toISOString();try{const r=await fetch(source.platform==='iQIYI'?iqRequestUrl():source.url,{headers:{'accept-language':'zh-TW,zh;q=0.9','user-agent':'Mozilla/5.0'},signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('HTTP '+r.status);const parsed=parseRanking(source,await r.text());if(source.platform==='Hami Video')parsed.items=await enrichHami(parsed.items);if(!parsed.items.length)throw new Error(source.platform==='iQIYI'?'官方 API 未回傳可核對的 ntw 繁體中文熱播榜；保留上次成功資料。':'官方排行榜區塊未取得可辨識名次。');return {...source,...parsed,status:parsed.items.length===10?'ok':'partial',attempted_at,checked_at:attempted_at,note:parsed.items.length===10?'':`官方可讀榜單取得 ${parsed.items.length} 筆；不補造名次。`};}catch(e){return {...source,status:'error',attempted_at,items:[],note:String(e.message||e)};}}
 export function retainRanking(fresh,old){if(fresh.status==='error'&&old?.items?.length&&old.url===fresh.url&&old.label===fresh.label)return {...fresh,items:old.items,checked_at:old.checked_at,period_label:old.period_label,stale:true};return fresh;}
 export function categoryLabel(country,type){
  const matches=[['韓國','韓'],['日本','日'],['中國大陸','陸'],['中國','陸'],['台灣','台'],['臺灣','台'],['香港','港'],['泰國','泰']].filter(([name])=>country.includes(name));
@@ -84,3 +91,8 @@ export function parseCategory(html,url){
  return {};
 }
 async function enrichHami(items){const out=[];for(let i=0;i<items.length;i+=5){out.push(...await Promise.all(items.slice(i,i+5).map(async x=>{try{const r=await fetch(x.url,{signal:AbortSignal.timeout(10000)});if(r.ok)return {...x,...parseCategory(await r.text(),x.url)};}catch{}return x;})));}return out;}
+
+export function iqRequestUrl(){
+ const params=new URLSearchParams({app_k:'appk_pcw',app_lm:'ntw',app_t:'i18nvideo',app_v:'3.1.5',card_v:'v1',att_id:'null',dev_os:'android',dev_ua:'Mozilla/5.0',lang:'zh_tw',mod:'ntw',net_sts:'1',page_st:'ranking_web',platform_id:'48',psp_cki:'',psp_uid:'',psp_status:'-1',secure_p:'pcw',secure_v:'1',timezone:'GMT+8:00',pg_size:'4',channel_id:'0',customized:'1',pg_num:'1',req_times:'1',qyid:crypto.randomUUID().replaceAll('-',''),req_sn:String(Date.now()),sid:String(Date.now())});
+ return 'https://api.iq.com/page/pcw_common?'+params.toString();
+}
