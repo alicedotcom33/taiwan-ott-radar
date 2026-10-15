@@ -4,7 +4,7 @@ export const SOURCES=[
  {platform:'Netflix',url:'https://www.netflix.com/tudum/top10/taiwan/tv',label:'台灣節目 Top 10 週榜',period:'weekly'},
  {platform:'friDay影音',url:'https://video.friday.tw/ranking/1',label:'最多人觀看',period:'unspecified'},
  {platform:'Disney+',url:'https://www.disneyplus.com/zh-tw',label:'台灣本日熱播 Top 10',period:'daily'},
- {platform:'Hami Video',url:'https://hamivideo.hinet.net/index.do',label:'本週人氣榜',period:'weekly'},
+ {platform:'Hami Video',url:'https://hamivideo.hinet.net/index.do',label:'戲劇人氣榜',period:'unspecified'},
  {platform:'MyVideo',url:'https://www.myvideo.net.tw/rank/drama/',label:'本日戲劇榜',period:'daily'},
  {platform:'LINE TV',url:'https://www.linetv.tw/',label:'10 大熱門節目',period:'unspecified'},
  {platform:'iQIYI',url:'https://www.iq.com/ranking?lang=zh_tw',label:'熱播榜',period:'unspecified'},
@@ -16,7 +16,7 @@ const clean=s=>decode(s).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
 const attr=(s,k)=>decode(s.match(new RegExp('\\b'+k+'=["\\\']([^"\\\']*)["\\\']','i'))?.[1]||'');
 function section(html,label,end){const p=html.indexOf(label);if(p<0)return '';const tail=html.slice(p);return tail.slice(0,tail.indexOf(end)>0?tail.indexOf(end):tail.length);}
 function item(source,rank,title,url,image=''){return {rank:Number(rank),title:clean(title),url:new URL(decode(url),source.url).href,image:decode(image)};}
-export function parseRanking(source,html){let items=[],period_label=source.platform==='Hami Video'?'本週（官網標示）':'官方未公布統計週期';
+export function parseRanking(source,html){let items=[],period_label='官方未公布統計週期';
  if(source.platform==='friDay影音'){
   const body=html;
   for(const m of body.matchAll(/<h3[^>]*class="ranking-text"[^>]*>(\d+)<\/h3>([\s\S]*?)(?=<h3[^>]*class="ranking-text"|$)/g)){
@@ -38,7 +38,7 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
    const a=m[2].match(/<a\b[^>]*aria-label=[^>]*>/)?.[0]||'';if(a)items.push(item(source,+m[1]+1,attr(a,'aria-label'),attr(a,'href'),attr(m[2].match(/<img\b[^>]*>/)?.[0]||'','src')));
   }period_label='本日熱播（官網標示）';
  }else if(source.platform==='Hami Video'){
-  const body=section(html,'<h2>本週人氣榜</h2>','</section>');
+  const body=section(html,'<h2>戲劇人氣榜</h2>','</section>');
   for(const m of body.matchAll(/<div class="list_item swiper-slide">([\s\S]*?)(?=<div class="list_item swiper-slide">|$)/g)){
    const r=m[1].match(/class="ranking">(\d+)</)?.[1],a=m[1].match(/<a\b[^>]*href=[^>]+>/)?.[0]||'',img=m[1].match(/<img\b[^>]*data-src=[^>]+>/)?.[0]||'';
    if(r&&a)items.push(item(source,r,attr(img,'alt'),attr(a,'href'),attr(img,'data-src')));
@@ -100,7 +100,7 @@ export function parseCategory(html,url){
  if(explicit)return {category:explicit,category_evidence:{url,text:title}};
  // Read origin only from the current work's structured metadata, never story text.
  for(const m of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){
-  try{const data=JSON.parse(m[1]),list=Array.isArray(data)?data:data['@graph']||[data];for(const d of list){if(!d.name||!d.countryOfOrigin||!title.includes(clean(d.name)))continue;if(d.url&&new URL(d.url,url).pathname!==new URL(url).pathname)continue;const country=typeof d.countryOfOrigin==='string'?d.countryOfOrigin:d.countryOfOrigin.name||'';const type=/ - 電影 - /.test(title)||d['@type']==='Movie'?'電影':/ - (?:戲劇|影劇) - /.test(title)?'戲劇':/ - 綜藝 - /.test(title)?'綜藝':'';const category=categoryLabel(country,type);if(category)return {category,category_evidence:{url,text:JSON.stringify({name:d.name,countryOfOrigin:country,type})}};}}catch{}
+  try{const data=JSON.parse(m[1]),list=Array.isArray(data)?data:data['@graph']||[data];for(const d of list){if(!d.name||!d.countryOfOrigin||!title.includes(clean(d.name)))continue;if(d.url&&new URL(d.url,url).pathname!==new URL(url).pathname)continue;const country=typeof d.countryOfOrigin==='string'?d.countryOfOrigin:d.countryOfOrigin.name||'';const type=/(?:韓|日|台|陸)綜/.test(title)?'綜藝':/ - (?:戲劇|影劇) - /.test(title)?'戲劇':/ - 綜藝 - /.test(title)?'綜藝':/ - 電影 - /.test(title)||d['@type']==='Movie'?'電影':'';const category=categoryLabel(country,type);if(category)return {category,category_evidence:{url,text:JSON.stringify({name:d.name,countryOfOrigin:country,type})}};}}catch{}
  }
  return {};
 }
