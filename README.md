@@ -55,3 +55,13 @@ Netflix 海外週榜回應若缺母影集資料，使用同一官方卡片的季
 使用者提供 home_web 官方 API 回應，人气热榜明示 0–29 名，前六名與官網截圖一致。投影其中前十筆的片名、名次、作品網址及類型證據存入 iq-taiwan-snapshot.mjs；不保存使用者裝置識別碼或完整請求。feed 與排程讀取快取時補上這份 verified_snapshot_id 的核對資料，不重置其他平台快取。
 
 此為官方回應匯入，並非已完成持續自動更新。已測同分組、同裝置、home_web 伺服器回應仍不同；本站 Origin 沒有收到跨站讀取許可標頭，callback/cb 也未產生 JSONP。原因尚未證實。每日無法通過地區核對時保留核對榜單與 checked_at，更新 attempted_at 並顯示警示，不允許錯誤回應覆蓋已核對榜單。
+
+## 台灣 Windows 每日上傳（配對後啟用）
+
+`scripts/windows/Install-OttRadar.ps1` 是獨立安裝程式，內嵌固定版本的擷取程式；不自動下載或執行新版程式。先測試台灣 home_web 榜單，再於 `%LOCALAPPDATA%\OttRadar` 建立 2048-bit RSA 私鑰（Windows DPAPI、目前使用者綁定），只輸出公開 JWK。網站設定 `IQ_UPLOADER_PUBLIC_JWK`（production / Functions scope）後部署，安裝程式辨認相同 modulus 指紋才進行第一次簽章上傳。
+
+首次上傳確認成功後，建立目前登入者、Limited 權限的 `OTT Radar Taiwan iQIYI` 工作：本機時間每日 09:00，加登入補跑；一天成功一次後跳過，失敗最多三次、間隔 15 分鐘重試。電腦必須登入、開機連網。安裝程式等待配對 20 分鐘，逾時不建立排程；重跑沿用私鑰。可用 `Disable-ScheduledTask -TaskName 'OTT Radar Taiwan iQIYI'` 停止。
+
+安全邊界：只主動 HTTPS 讀 api.iq.com、上傳既有正式站，不開監聽埠、不裝遠端控制、不變更防火牆／防毒／全域 PowerShell 設定、不需管理員。遠端回應只作 JSON 資料，不執行指令。專案目錄 ACL 限目前使用者與 SYSTEM。私鑰不送出，完整愛奇藝請求／裝置 ID 不保存上傳。網站只接受預先配對私鑰的 RSA-SHA256 簽章、15 分鐘內擷取、明示 1–10 名與唯一官方作品網址的資料；拒絕篡改、重複和過期資料。簽章證明授權電腦提交，不能獨立證明來源地理位置；換網路／VPN 後仍應比對實際榜單。
+
+上傳寫獨立 `iq-taiwan-local.json`，不與全平台排程共用寫入鍵。feed 合併資料，超過 36 小時未更新標示 stale。未配對時接收端回 503，既有榜單不受影響。網站端安全與資料保護已測試；Linux 環境無法實際執行 Windows Task Scheduler / DPAPI，須於目標 Windows 完成安裝與第一次上傳測試後，才可宣稱每日更新已啟用。
