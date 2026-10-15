@@ -2,14 +2,14 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#252b36"><meta name="description" content="一次掌握台灣串流平台官方熱門榜。查看前十名、作品分類與各平台更新時間，找到下一部想看的好戲。">
+<meta name="theme-color" content="#f7eee5"><meta name="description" content="一次掌握台灣串流平台官方熱門榜。查看前十名、作品分類與各平台更新時間，找到下一部想看的好戲。">
 <title>OTT RADAR｜台灣熱門榜</title>
 <link rel="icon" type="image/svg+xml" href="/assets/radar-mark.svg"><link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <header class="wrap"><a class="brand" href="/" aria-label="OTT RADAR 台灣熱門榜首頁"><img src="/assets/radar-mark.svg" width="42" height="42" alt=""><span class="brand-copy"><strong>OTT RADAR</strong><span>台灣串流熱門榜</span></span></a><small id="updated">榜單讀取中</small></header>
 <main class="wrap">
-<section class="hero"><div class="hero-copy"><p class="eyebrow">TAIWAN · STREAMING CHARTS</p><h1>台灣串流熱榜<span class="hero-dot">.</span></h1><p class="hero-description">看見熱度，找到下一部。</p><div class="hero-caption">各平台官方 TOP 10 ／ 作品分類 ／ 跨平台上榜</div></div><div class="cover-type" aria-hidden="true"><span>WHAT’S</span><strong>ON TOP?</strong><small>YOUR DAILY STREAMING RADAR</small></div></section>
+<section class="hero"><div class="cover-windowbar"><span>streaming-radar.exe</span><span aria-hidden="true">— □ ×</span></div><div class="hero-copy"><p class="eyebrow">YOUR DAILY WATCHLIST</p><h1>台灣串流熱榜<span class="hero-dot">.</span></h1><p class="hero-description">把熱門好戲，收進你的追劇視窗。</p><div class="hero-caption">各平台官方 TOP 10 ／ 作品分類 ／ 跨平台上榜</div></div><div class="cover-type" aria-hidden="true"><span>on my radar</span><strong>top 10</strong><small>PRESS PLAY, FIND YOUR NEXT FAVORITE.</small></div></section>
 <section class="browse"><div class="browse-heading"><h2>熱門榜單</h2><span>選一個平台，開始探索</span></div><nav id="platforms" aria-label="選擇平台"></nav></section>
 <div class="filter-row"><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">搜尋片名</span><input id="search" type="search" placeholder="搜尋想看的片名…" autocomplete="off"></label><label class="category-filter"><span class="sr-only">依作品分類篩選</span><select id="category"><option value="">全部分類</option></select></label><button id="clear-filters" type="button">清除篩選</button></div><p class="filter-hint">搜尋與篩選保留原始名次，分布圖仍顯示完整榜單。</p><div id="freshness" class="freshness" role="status" hidden></div><div class="toolbar"><p id="summary" role="status">正在讀取排行榜…</p><button id="reload" type="button"><span aria-hidden="true">↻</span> 重新整理</button></div>
 <section id="content" class="grid" aria-label="各平台排行榜"></section>
