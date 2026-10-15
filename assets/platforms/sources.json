@@ -48,9 +48,9 @@
   },
   {
     "platform": "elta",
-    "source": "https://piceltaott-elta.cdn.hinet.net/public/assets/images/eltaottlogo_152_152.png",
     "page": "https://eltaott.tv/",
-    "path": "/assets/platforms/elta.png",
-    "bytes": 13526
+    "source": "https://piceltaott-elta.cdn.hinet.net/public/assets/images/logo.png",
+    "path": "/assets/platforms/elta-wordmark.png",
+    "bytes": 1917
   }
 ]

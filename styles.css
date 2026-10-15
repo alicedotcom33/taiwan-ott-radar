@@ -17,3 +17,7 @@
 
 /* Keep the full official Disney+ asset inside a definite image box. */
 .platform-logo.logo-disney{width:116px;height:48px;padding:4px 12px;overflow:visible}.platform-logo.logo-disney img{width:72px;height:40px;max-width:100%;max-height:100%;object-fit:contain;flex-shrink:0}
+
+.platform-logo.logo-elta.on-light{padding:8px;width:116px;height:43px}.platform-logo.logo-elta.on-light img{width:100px;height:24px;max-width:100%;max-height:100%;object-fit:contain}
+
+.category-note{margin:0 0 12px;color:#85909f;font-size:10px;line-height:1.6}@media(max-width:650px){.category-note{font-size:11px}}
