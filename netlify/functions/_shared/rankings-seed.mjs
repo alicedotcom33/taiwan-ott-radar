@@ -1,79 +1,79 @@
 export const INITIAL_RANKINGS = {
-  "schema_version": 1,
-  "updated_at": "2026-10-15T02:52:43.047Z",
+  "schema_version": 2,
+  "updated_at": "2026-10-15T03:13:01.789Z",
   "boards": [
     {
       "platform": "Netflix",
-      "url": "https://www.netflix.com/tudum/top10/taiwan/tv",
-      "label": "台灣節目週榜",
-      "period": "weekly",
+      "url": "https://www.netflix.com/tw/",
+      "label": "台灣首頁現正熱播",
+      "period": "unspecified",
       "items": [
         {
           "rank": 1,
-          "title": "Doctor X: Mafia in White: Limited Series",
-          "url": "https://www.netflix.com/watch/82682379?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABQqDhGMtNM4TuI4BjjVJxb8HDg8mvXRgOsXljPWXbnWCQnFKqYNsMvLAslS_3NzjwZu0lHw1y0LaHjn61dWUMWM7sbWXU4LwQz0m.jpg?r=1b4"
+          "title": "早春晴朗",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABQD8BOlYiTGaEUj4AWGSwT2UlKygAVgsGQeUBsw_LUrpB0-o01thJZeb36i4PpnR0G_ABCZqG2xCqX6YspcmptZGksgdCdLGBtM.jpg?r=a2b"
         },
         {
           "rank": 2,
-          "title": "Irreplaceable: Season 1",
-          "url": "https://www.netflix.com/watch/83150252?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABVN3mH6hzzoiRcH6GURpVwnaczxVD-TS44biOl8SwBaFuxs-br_qa8DXY99G51H82v_wNifdpOlwXqY5gxF6Ybw9H1UFtszeVW5j.jpg?r=a2f"
+          "title": "Doctor X：白色黑手黨時代",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABdPgtTlernJeCPeqNH9zMLqeG9juAFYn6qj_DjhTqlPAOiLr8djOqjxXkxmyrkV3qPpZ7cL9luidThP-QfnN8x_HZ4mk8pbnFPuj_SXslt8z_uEMYHZbxjH-wCFo3X4LE62J.jpg?r=26e"
         },
         {
           "rank": 3,
-          "title": "The Apothecary Diaries: Season 3",
-          "url": "https://www.netflix.com/watch/81712068?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABWYoaYVsktBuSpMv6PpuAho7ZRZiH3-SzFnJZqdJ01OqjOswDSO59_W2TsWQuhzW27n23F8Hb-1dAJFeZn-Eh1NO8pL3VFxKr4pm.jpg?r=9b1"
+          "title": "陽光女子合唱團",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABS-aDnXhCvBEe7CI_MrP7ovAE5S_zGjr3g0ArC1R4po_msIr_i6o2qwSZU_bC-sDsDH0HS5GM3PMiPIsLJLaz8OLceBNmyqL69k.jpg?r=2f3"
         },
         {
           "rank": 4,
-          "title": "The Other Side: Season 1",
-          "url": "https://www.netflix.com/watch/82835340?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABaKRQN1JZxv-nclpdPJWVn6pXs4REfXMQkRnrth-fI-pvcuxcR8JUARfGHp8DgHoiLnWVTmrYks7jQfzLEPhKzRr_RiuQ1DB5d0g.jpg?r=a0b"
+          "title": "藥師少女的獨語",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABREpNr9VNSdTxst3-GyPb0GxSVL8THdZjQhijEd9UDZfVnHoy-KqjmYd-_z12b9R3XrVaicnWiqZ5gid94K3sNIEVWkXCUmLbSA.jpg?r=1d9"
         },
         {
           "rank": 5,
-          "title": "The Fixers: Season 1",
-          "url": "https://www.netflix.com/watch/82635638?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABcYSFqw1cMw-141g583yH_d6Lth8EQdy5mGZ9NiIDYo_PnhH4drsV4-Jnoq9tP0DMVNS0SUK0T7CgmtkdGp3uKD1tK7Ysc7hYXTE.jpg?r=72c"
+          "title": "黑白清道夫",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABe-woJR0YipUmPau8ZxDVdt6qsiYuXjoH7Sg7EPuOrp-s6U73s9k1gIDg_pmHSjTz2w3DYke8kUav1jwdfquttLEatlN8O3gcjLsYIyWRsHqyWAQXrv9DGC_Sk9JLzQP2i3s.jpg?r=c04"
         },
         {
           "rank": 6,
-          "title": "Plastic Beauty: Season 1",
-          "url": "https://www.netflix.com/watch/81603806?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABcbTYrLNFsrw3nWhl2Nv6BmCI6CJiC5QtSOnAWNQRYgJ6tOMlD_DCo_1puSD_bFg2PRisO7o7aSmiLCqEwiLRISSO6JcE8Hf-vbO.jpg?r=8c4"
+          "title": "鐵拳教育",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABaGTpJ66EzCzKuwFikDeOTo-R5EdmPqzwUl-5l1bVmD-FAjFcnGGcwYFKZRR3kll8HbpuMtmofkUYWC8My3jS0Ianp1-mBMjfD19q5iEzMd1IeKuIOhMjM7NLv5ROXdoFDWA.jpg?r=35e"
         },
         {
           "rank": 7,
-          "title": "Love for You: Season 1",
-          "url": "https://www.netflix.com/watch/83097271?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABbWJ65NSpJm6dYSXiWy8De4p9Cnom_Pbqjn9VDCpIdxh7mta4JobU2QzJZ5rMUTCzLorEHDilQW5Ah7iO5l4UeaxNh6rg_OSD0iG.jpg?r=0cd"
+          "title": "無可替代",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABd5d3S7XPxGXaD_RtuyEwsI7S2LTHvf1J6I6mjXAn8Dc-14A0pw8TCEE-w8Wy1W7M6YijLxNKkz4qE4wziCgci7MS_u5duD4i4w.jpg?r=07d"
         },
         {
           "rank": 8,
-          "title": "The Early Spring: Season 1",
-          "url": "https://www.netflix.com/watch/83067197?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABaboo3MVQu1ZLH0BR-5qshQ2n6JMwG7nL0_xZ6RpyQAh9Fq4dEW4DO6GbQPfAOqLZVnz7CF7S7KDdj5d8ybMBZnMENwkcvUnxlsA.jpg?r=1d3"
+          "title": "挑情醜聞",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABWmzCTkl9h1Dda6gY43rcM0OTIQjyMuRwgLpJYVRsi8-yGP7-CJB2uXq6sGx2ytENlxKZeUvB48xygifaPAESUZS4COznNJtf4DfoDrXS52NRGX5FtOO1mhp1P25vnKAYBOu.jpg?r=a19"
         },
         {
           "rank": 9,
-          "title": "Take Charge of My Heart: Limited Series",
-          "url": "https://www.netflix.com/watch/82016402?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABTOdcdz6Nn1bOTsbmDCz2UVe-T5_kEfCmGAoM6xUs6M4jbPDVp1tdRhafFBhGIMWwFwl_KfMVqj0FLy8Q8seYoQryPDLaNjZkMYF.jpg?r=61c"
+          "title": "戀愛充電中",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABcozqlUAUibepL1cxd7Dfr-fSg9utLfm62MV-I9fd1Wy0bExCB6bp0L6RPa2nhNitDk8UPszqYfa79FqwtK-F6SWKTDI-N32taG80XRRiR8H0Y8EktbK_O25IdvyC8MbejPx.jpg?r=516"
         },
         {
           "rank": 10,
-          "title": "The Ramparts of Ice: Season 2",
-          "url": "https://www.netflix.com/watch/82031882?trackId=276465340&trkId=276465340&src=tudum",
-          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABT6gIsecuCQtQMusedUviCNEL9PcebD8ZnBcYeWTJZd266tFawee0MDlF72sAIp0jCWiX4Zbxj1dU6aLFMbDsTo28uy9TZ5eS8EF.jpg?r=6e3"
+          "title": "飆馬野郎 JOJO 的奇妙冒險",
+          "url": "https://www.netflix.com/tw/",
+          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABduoOc2lvZflxATGvaJ-uukw3ljuFMsJ1oYoirgWR9TtwFUlAkueJybuYdO4_Kk3R0XyrcrBdaFlUB-yXHCgK87afj_EY7grmSagiYOPJM9Ni8qVpFBPPYgjvbA9CVaU4BKC.jpg?r=e8f"
         }
       ],
-      "period_label": "10/5/26 - 10/11/26",
+      "period_label": "官網現正熱播 · 未公布統計區間",
       "status": "ok",
-      "attempted_at": "2026-10-15T02:52:43.047Z",
-      "checked_at": "2026-10-15T02:52:43.047Z",
-      "note": ""
+      "checked_at": "2026-10-15T03:13:01.789Z",
+      "attempted_at": "2026-10-15T03:13:01.789Z",
+      "note": "台灣公開首頁現正熱播榜；官方未公布統計區間。"
     },
     {
       "platform": "friDay影音",
