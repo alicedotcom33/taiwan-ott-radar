@@ -47,3 +47,5 @@ LINE TV 讀取同 dramaId 作品的 genres 與 channelIds，並由該頁 channel
 iQIYI pcw_common 雖回應 mod=ntw、lang=zh_tw，但與使用者提供的台灣官網熱播榜截圖第三名起不同，且卡片標記 is_personalized=1。這些區域及語言欄位不能證明台灣實際排行榜一致，具體是 IP 或個人化差異尚未確定。原始回應隔離在 unverified_items，前台不顯示未驗證名次，狀態 unavailable；每日只記錄嘗試，不宣稱成功更新。使用者截圖前六名保留作比對參考，不能自行補出後四名。
 
 LiTV 讀取首頁 category_id=56、meta_type=rank 的戲劇排行，並逐一核對相同 content_id HTML 中的明示名次。分類採同筆 f_countries 與戲劇類型。CATCHPLAY 台灣頁在目前公開讀取環境轉到企業頁，尚無可用官方榜單，本輪不加入。
+
+Netflix 海外週榜回應若缺母影集資料，使用同一官方卡片的季別 videoId 請求台灣作品頁，並接受 Netflix 本身導向母影集的重新導向。保留原始季別 ID 與 requested_url/resolved_url 證據，再讀官方中文片名，避免海外缺播放資料時掉回待確認。
