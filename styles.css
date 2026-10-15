@@ -42,3 +42,5 @@ h1{color:#4c4855}.ranking a{color:#55515f}.ranking a:hover{color:#7e718e}.cast{c
 
 /* Colored marks need no backing; white wordmarks use charcoal. */
 .platform-logo{background:#29272d}.platform-logo.on-light,.platform-logo.logo-elta.on-light{background:transparent}
+
+.update-policy{font-size:12px;color:#81758c;line-height:1.8;margin:-10px 0 20px}.highlights{padding:0 0 20px;margin-bottom:20px;border-bottom:1px solid #dfdce2}.highlights h2{font-size:14px;color:#6a6077;margin:0 0 9px}.highlights ul{padding-left:20px;margin:0;line-height:1.8;font-size:13px;color:#55515f}.highlights p{font-size:11px;color:#8b8198;margin:9px 0 0}
