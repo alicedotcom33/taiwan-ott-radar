@@ -5,6 +5,6 @@ export default async()=>{
  const store=getStore('ott-radar'),old=await store.get('rankings.json',{type:'json'})||INITIAL_RANKINGS;
  const fresh=await Promise.all(SOURCES.map(scanRanking));
  const boards=fresh.map(b=>retainRanking(b,old.boards.find(x=>x.platform===b.platform)));
- await store.setJSON('rankings.json',{schema_version:3,updated_at:new Date().toISOString(),boards});
+ await store.setJSON('rankings.json',{schema_version:4,updated_at:new Date().toISOString(),boards});
 };
 export const config={background:true,path:'/.netlify/functions/refresh-background'};

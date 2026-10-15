@@ -1,18 +1,79 @@
 export const INITIAL_RANKINGS = {
-  "schema_version": 3,
-  "updated_at": "2026-10-15T03:18:33.204Z",
+  "schema_version": 4,
+  "updated_at": "2026-10-15T03:25:44.428Z",
   "boards": [
     {
       "platform": "Netflix",
-      "url": "https://www.netflix.com/browse",
-      "label": "台灣今日 Top 10（尚未取得）",
-      "period": "daily",
-      "items": [],
-      "status": "login_required",
-      "attempted_at": "2026-10-15T03:18:33.204Z",
-      "checked_at": null,
-      "period_label": "台灣會員今日榜",
-      "note": "已撤下地區無法確認的公開宣傳首頁排名；尚未取得可核對台灣地區的會員今日榜。"
+      "url": "https://www.netflix.com/tudum/top10/taiwan/tv",
+      "label": "台灣節目 Top 10 週榜",
+      "period": "weekly",
+      "items": [
+        {
+          "rank": 1,
+          "title": "Doctor X: Mafia in White: Limited Series",
+          "url": "https://www.netflix.com/watch/82682379?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABQqDhGMtNM4TuI4BjjVJxb8HDg8mvXRgOsXljPWXbnWCQnFKqYNsMvLAslS_3NzjwZu0lHw1y0LaHjn61dWUMWM7sbWXU4LwQz0m.jpg?r=1b4"
+        },
+        {
+          "rank": 2,
+          "title": "Irreplaceable: Season 1",
+          "url": "https://www.netflix.com/watch/83150252?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABVN3mH6hzzoiRcH6GURpVwnaczxVD-TS44biOl8SwBaFuxs-br_qa8DXY99G51H82v_wNifdpOlwXqY5gxF6Ybw9H1UFtszeVW5j.jpg?r=a2f"
+        },
+        {
+          "rank": 3,
+          "title": "The Apothecary Diaries: Season 3",
+          "url": "https://www.netflix.com/watch/81712068?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABWYoaYVsktBuSpMv6PpuAho7ZRZiH3-SzFnJZqdJ01OqjOswDSO59_W2TsWQuhzW27n23F8Hb-1dAJFeZn-Eh1NO8pL3VFxKr4pm.jpg?r=9b1"
+        },
+        {
+          "rank": 4,
+          "title": "The Other Side: Season 1",
+          "url": "https://www.netflix.com/watch/82835340?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABaKRQN1JZxv-nclpdPJWVn6pXs4REfXMQkRnrth-fI-pvcuxcR8JUARfGHp8DgHoiLnWVTmrYks7jQfzLEPhKzRr_RiuQ1DB5d0g.jpg?r=a0b"
+        },
+        {
+          "rank": 5,
+          "title": "The Fixers: Season 1",
+          "url": "https://www.netflix.com/watch/82635638?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABcYSFqw1cMw-141g583yH_d6Lth8EQdy5mGZ9NiIDYo_PnhH4drsV4-Jnoq9tP0DMVNS0SUK0T7CgmtkdGp3uKD1tK7Ysc7hYXTE.jpg?r=72c"
+        },
+        {
+          "rank": 6,
+          "title": "Plastic Beauty: Season 1",
+          "url": "https://www.netflix.com/watch/81603806?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABcbTYrLNFsrw3nWhl2Nv6BmCI6CJiC5QtSOnAWNQRYgJ6tOMlD_DCo_1puSD_bFg2PRisO7o7aSmiLCqEwiLRISSO6JcE8Hf-vbO.jpg?r=8c4"
+        },
+        {
+          "rank": 7,
+          "title": "Love for You: Season 1",
+          "url": "https://www.netflix.com/watch/83097271?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABbWJ65NSpJm6dYSXiWy8De4p9Cnom_Pbqjn9VDCpIdxh7mta4JobU2QzJZ5rMUTCzLorEHDilQW5Ah7iO5l4UeaxNh6rg_OSD0iG.jpg?r=0cd"
+        },
+        {
+          "rank": 8,
+          "title": "The Early Spring: Season 1",
+          "url": "https://www.netflix.com/watch/83067197?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABaboo3MVQu1ZLH0BR-5qshQ2n6JMwG7nL0_xZ6RpyQAh9Fq4dEW4DO6GbQPfAOqLZVnz7CF7S7KDdj5d8ybMBZnMENwkcvUnxlsA.jpg?r=1d3"
+        },
+        {
+          "rank": 9,
+          "title": "Take Charge of My Heart: Limited Series",
+          "url": "https://www.netflix.com/watch/82016402?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABTOdcdz6Nn1bOTsbmDCz2UVe-T5_kEfCmGAoM6xUs6M4jbPDVp1tdRhafFBhGIMWwFwl_KfMVqj0FLy8Q8seYoQryPDLaNjZkMYF.jpg?r=61c"
+        },
+        {
+          "rank": 10,
+          "title": "The Ramparts of Ice: Season 2",
+          "url": "https://www.netflix.com/watch/82031882?trackId=276465340&trkId=276465340&src=tudum",
+          "image": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABT6gIsecuCQtQMusedUviCNEL9PcebD8ZnBcYeWTJZd266tFawee0MDlF72sAIp0jCWiX4Zbxj1dU6aLFMbDsTo28uy9TZ5eS8EF.jpg?r=6e3"
+        }
+      ],
+      "period_label": "10/5/26 - 10/11/26",
+      "status": "ok",
+      "attempted_at": "2026-10-15T03:25:44.428Z",
+      "checked_at": "2026-10-15T03:25:44.428Z",
+      "note": ""
     },
     {
       "platform": "friDay影音",
@@ -24,67 +85,117 @@ export const INITIAL_RANKINGS = {
           "rank": 1,
           "title": "Running Man",
           "url": "https://video.friday.tw/show/detail/1127",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/1127/1127_60699_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/1127/1127_60699_S.jpg",
+          "category": "韓綜",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2020 / 韓國"
+          }
         },
         {
           "rank": 2,
           "title": "拜託了冰箱",
           "url": "https://video.friday.tw/show/detail/3861",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/3861/3861_16142_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/3861/3861_16142_S.jpg",
+          "category": "韓綜",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2024 / 韓國"
+          }
         },
         {
           "rank": 3,
           "title": "真男人的旅行法 in 台灣",
           "url": "https://video.friday.tw/show/detail/5319",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/5319/5319_32501_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/5319/5319_32501_S.jpg",
+          "category": "韓綜",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2026 / 韓國"
+          }
         },
         {
           "rank": 4,
           "title": "殺手媽咪",
           "url": "https://video.friday.tw/drama/detail/5112",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/5112/5112_12145_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/5112/5112_12145_S.jpg",
+          "category": "韓劇",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2026 / 韓國"
+          }
         },
         {
           "rank": 5,
           "title": "VIVANT（2026）",
           "url": "https://video.friday.tw/drama/detail/5039",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/5039/5039_80835_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/5039/5039_80835_S.jpg",
+          "category": "日劇",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2026 / 日本"
+          }
         },
         {
           "rank": 6,
           "title": "玉簟秋",
           "url": "https://video.friday.tw/drama/detail/5405",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/5405/5405_42064_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/5405/5405_42064_S.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2026 / 中國"
+          }
         },
         {
           "rank": 7,
           "title": "對於我來説過於刻薄的經紀人－秘書鎮 第二季",
           "url": "https://video.friday.tw/show/detail/5250",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/5250/5250_72473_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/5250/5250_72473_S.jpg",
+          "category": "韓綜",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2026 / 韓國"
+          }
         },
         {
           "rank": 8,
           "title": "兩天一夜第4季",
           "url": "https://video.friday.tw/show/detail/2068",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/2068/2068_89749_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/2068/2068_89749_S.jpg",
+          "category": "韓綜",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2021 / 韓國"
+          }
         },
         {
           "rank": 9,
           "title": "真男人的旅行法 in 九州",
           "url": "https://video.friday.tw/show/detail/4931",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/4931/4931_91145_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/4931/4931_91145_S.jpg",
+          "category": "韓綜",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2026 / 韓國 / 全4集"
+          }
         },
         {
           "rank": 10,
           "title": "十六夜膳房",
           "url": "https://video.friday.tw/drama/detail/5328",
-          "image": "https://vbmspic.video.friday.tw/DRAMA/5328/5328_19451_S.jpg"
+          "image": "https://vbmspic.video.friday.tw/DRAMA/5328/5328_19451_S.jpg",
+          "category": "日劇",
+          "category_evidence": {
+            "url": "https://video.friday.tw/ranking/1",
+            "text": "2026 / 日本"
+          }
         }
       ],
       "period_label": "官方未公布統計週期",
       "status": "ok",
-      "attempted_at": "2026-10-15T02:52:43.047Z",
-      "checked_at": "2026-10-15T02:52:43.047Z",
+      "attempted_at": "2026-10-15T03:25:44.428Z",
+      "checked_at": "2026-10-15T03:25:44.428Z",
       "note": ""
     },
     {
@@ -156,81 +267,131 @@ export const INITIAL_RANKINGS = {
       ],
       "period_label": "本日熱播（官網標示）",
       "status": "ok",
-      "attempted_at": "2026-10-15T02:52:43.047Z",
-      "checked_at": "2026-10-15T02:52:43.047Z",
+      "attempted_at": "2026-10-15T03:25:44.428Z",
+      "checked_at": "2026-10-15T03:25:44.428Z",
       "note": ""
     },
     {
       "platform": "Hami Video",
       "url": "https://hamivideo.hinet.net/index.do",
-      "label": "本月最熱門",
-      "period": "unspecified",
+      "label": "本週人氣榜",
+      "period": "weekly",
       "items": [
         {
           "rank": 1,
-          "title": "超級瑪利歐兄弟電影版",
-          "url": "https://hamivideo.hinet.net/product/336723.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2543100281_o_20260911115103.jpg"
+          "title": "寒戰1994",
+          "url": "https://hamivideo.hinet.net/product/337483.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2560100048_o_20260922005421.jpg",
+          "category": "港片",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/337483.do?cs=2",
+            "text": "{\"name\":\"寒戰1994\",\"countryOfOrigin\":\"香港\",\"type\":\"電影\"}"
+          }
         },
         {
           "rank": 2,
-          "title": "寒戰1994",
-          "url": "https://hamivideo.hinet.net/product/337483.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2560100048_o_20260922005421.jpg"
+          "title": "玩命關頭X",
+          "url": "https://hamivideo.hinet.net/product/338260.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@4043100050_o_20260924212410.jpg",
+          "category": "電影",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/338260.do?cs=2",
+            "text": "{\"name\":\"玩命關頭X\",\"countryOfOrigin\":\"美國\",\"type\":\"電影\"}"
+          }
         },
         {
           "rank": 3,
-          "title": "電影版女王偵訊室 THE FINAL",
-          "url": "https://hamivideo.hinet.net/product/335961.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2416100063_o_20260904133906.jpg"
+          "title": "超級瑪利歐兄弟電影版",
+          "url": "https://hamivideo.hinet.net/product/336723.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2543100281_o_20260911115103.jpg",
+          "category": "電影",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/336723.do?cs=2",
+            "text": "{\"name\":\"超級瑪利歐兄弟電影版\",\"countryOfOrigin\":\"美國\",\"type\":\"電影\"}"
+          }
         },
         {
           "rank": 4,
-          "title": "死亡賭局",
-          "url": "https://hamivideo.hinet.net/product/336445.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2417100106_o_20260910105412.jpg"
+          "title": "鏢人：風起大漠",
+          "url": "https://hamivideo.hinet.net/product/336972.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2429100738_o_20260916092705.jpg",
+          "category": "陸片",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/336972.do?cs=2",
+            "text": "{\"name\":\"鏢人：風起大漠\",\"countryOfOrigin\":\"中國\",\"type\":\"電影\"}"
+          }
         },
         {
           "rank": 5,
-          "title": "鏢人：風起大漠",
-          "url": "https://hamivideo.hinet.net/product/336972.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2429100738_o_20260916092705.jpg"
+          "title": "哥吉拉與金剛：新帝國",
+          "url": "https://hamivideo.hinet.net/product/337891.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2566100326_o_20260923162712.jpg",
+          "category": "電影",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/337891.do?cs=2",
+            "text": "{\"name\":\"哥吉拉與金剛：新帝國\",\"countryOfOrigin\":\"美國\",\"type\":\"電影\"}"
+          }
         },
         {
           "rank": 6,
-          "title": "火遮眼",
-          "url": "https://hamivideo.hinet.net/product/335541.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@4041100026_o_20260901063612.jpg"
+          "title": "夜勤事件",
+          "url": "https://hamivideo.hinet.net/product/338942.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2218100795_o_20261006110337.jpg",
+          "category": "日片",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/338942.do?cs=2",
+            "text": "{\"name\":\"夜勤事件\",\"countryOfOrigin\":\"日本\",\"type\":\"電影\"}"
+          }
         },
         {
           "rank": 7,
-          "title": "VIVANT(2026)",
-          "url": "https://hamivideo.hinet.net/product/331506.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2546106652_o_20260722143038.jpg"
+          "title": "人為什麼寫情書",
+          "url": "https://hamivideo.hinet.net/product/337885.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2055101031_o_20260923160317.jpg",
+          "category": "日片",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/337885.do?cs=2",
+            "text": "{\"name\":\"人為什麼寫情書\",\"countryOfOrigin\":\"日本\",\"type\":\"電影\"}"
+          }
         },
         {
           "rank": 8,
-          "title": "凡人修仙傳S5",
-          "url": "https://hamivideo.hinet.net/product/328123.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2694100876_o_20260930104214.jpg"
+          "title": "危城兄弟",
+          "url": "https://hamivideo.hinet.net/product/339013.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@4140100001_o_20261006201214.jpg",
+          "category": "台片",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/339013.do?cs=2",
+            "text": "{\"name\":\"危城兄弟\",\"countryOfOrigin\":\"台灣\",\"type\":\"電影\"}"
+          }
         },
         {
           "rank": 9,
-          "title": "屍速禁區",
-          "url": "https://hamivideo.hinet.net/product/334241.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@4069100014_o_20260818131211.jpg"
+          "title": "卑鄙遊戲",
+          "url": "https://hamivideo.hinet.net/product/337404.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2497100111_o_20260921163132.jpg",
+          "category": "電影",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/337404.do?cs=2",
+            "text": "{\"name\":\"卑鄙遊戲\",\"countryOfOrigin\":\"澳洲\",\"type\":\"電影\"}"
+          }
         },
         {
           "rank": 10,
-          "title": "綁架遊戲 kiDnap GAME",
-          "url": "https://hamivideo.hinet.net/product/337838.do?cs=2",
-          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@4048100302_o_20261013105742.jpg"
+          "title": "侏羅紀世界：統霸天下",
+          "url": "https://hamivideo.hinet.net/product/336671.do?cs=2",
+          "image": "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@4043100047_o_20260911020013.jpg",
+          "category": "電影",
+          "category_evidence": {
+            "url": "https://hamivideo.hinet.net/product/336671.do?cs=2",
+            "text": "{\"name\":\"侏羅紀世界：統霸天下\",\"countryOfOrigin\":\"美國\",\"type\":\"電影\"}"
+          }
         }
       ],
-      "period_label": "官方未公布統計週期",
+      "period_label": "本週（官網標示）",
       "status": "ok",
-      "attempted_at": "2026-10-15T02:52:43.047Z",
-      "checked_at": "2026-10-15T02:52:43.047Z",
+      "attempted_at": "2026-10-15T03:25:44.428Z",
+      "checked_at": "2026-10-15T03:25:44.428Z",
       "note": ""
     },
     {
@@ -243,67 +404,117 @@ export const INITIAL_RANKINGS = {
           "rank": 1,
           "title": "玉簟秋",
           "url": "https://www.myvideo.net.tw/details/3/34651",
-          "image": "https://img.myvideo.net.tw/images/ALL030/0001/8267/202610121047337210_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/ALL030/0001/8267/202610121047337210_420x600.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2026 / 中國；本日戲劇榜"
+          }
         },
         {
           "rank": 2,
           "title": "璀璨之城",
           "url": "https://www.myvideo.net.tw/details/3/34463",
-          "image": "https://img.myvideo.net.tw/images/BIG010/0000/6305/202610050947129228_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/BIG010/0000/6305/202610050947129228_420x600.jpg",
+          "category": "港劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2026 / 香港；本日戲劇榜"
+          }
         },
         {
           "rank": 3,
           "title": "冷宮棄后忙種田",
           "url": "https://www.myvideo.net.tw/details/3/34523",
-          "image": "https://img.myvideo.net.tw/images/ALL030/0001/8241/202610011031216750_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/ALL030/0001/8241/202610011031216750_420x600.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2026 / 中國；本日戲劇榜"
+          }
         },
         {
           "rank": 4,
           "title": "追殺潔姬 第一季",
           "url": "https://www.myvideo.net.tw/details/3/34429",
-          "image": "https://img.myvideo.net.tw/images/BBC010/0000/7465/202609301205461265_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/BBC010/0000/7465/202609301205461265_420x600.jpg",
+          "category": "戲劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2026 / 英國；本日戲劇榜"
+          }
         },
         {
           "rank": 5,
           "title": "神之手",
           "url": "https://www.myvideo.net.tw/details/3/34389",
-          "image": "https://img.myvideo.net.tw/images/MED040/0000/0024/202609211443070168_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/MED040/0000/0024/202609211443070168_420x600.jpg",
+          "category": "戲劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2026 / 其他；本日戲劇榜"
+          }
         },
         {
           "rank": 6,
           "title": "風月如雪",
           "url": "https://www.myvideo.net.tw/details/3/28068",
-          "image": "https://img.myvideo.net.tw/images/ELT010/0000/4441/202407151439143427_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/ELT010/0000/4441/202407151439143427_420x600.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2023 / 中國；本日戲劇榜"
+          }
         },
         {
           "rank": 7,
           "title": "赤裸的心",
           "url": "https://www.myvideo.net.tw/details/3/34484",
-          "image": "https://img.myvideo.net.tw/images/MIG010/0001/2442/202610011733307759_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/MIG010/0001/2442/202610011733307759_420x600.jpg",
+          "category": "日劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2026 / 日本；本日戲劇榜"
+          }
         },
         {
           "rank": 8,
           "title": "執法者們",
           "url": "https://www.myvideo.net.tw/details/3/30949",
-          "image": "https://img.myvideo.net.tw/images/BIG010/0000/5872/202506181439536141_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/BIG010/0000/5872/202506181439536141_420x600.jpg",
+          "category": "港劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2025 / 香港；本日戲劇榜"
+          }
         },
         {
           "rank": 9,
           "title": "飛到我心上",
           "url": "https://www.myvideo.net.tw/details/3/34272",
-          "image": "https://img.myvideo.net.tw/images/ALL030/0001/8175/202609040908116191_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/ALL030/0001/8175/202609040908116191_420x600.jpg",
+          "category": "陸劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2026 / 中國；本日戲劇榜"
+          }
         },
         {
           "rank": 10,
           "title": "死有對証",
           "url": "https://www.myvideo.net.tw/details/3/34249",
-          "image": "https://img.myvideo.net.tw/images/BIG010/0000/6239/202609011020522409_420x600.jpg"
+          "image": "https://img.myvideo.net.tw/images/BIG010/0000/6239/202609011020522409_420x600.jpg",
+          "category": "港劇",
+          "category_evidence": {
+            "url": "https://www.myvideo.net.tw/rank/drama/",
+            "text": "2026 / 香港；本日戲劇榜"
+          }
         }
       ],
       "period_label": "20261015",
       "status": "ok",
-      "attempted_at": "2026-10-15T02:52:43.047Z",
-      "checked_at": "2026-10-15T02:52:43.047Z",
+      "attempted_at": "2026-10-15T03:25:44.428Z",
+      "checked_at": "2026-10-15T03:25:44.428Z",
       "note": ""
     },
     {
@@ -375,21 +586,21 @@ export const INITIAL_RANKINGS = {
       ],
       "period_label": "官方未公布統計週期",
       "status": "ok",
-      "attempted_at": "2026-10-15T02:52:43.047Z",
-      "checked_at": "2026-10-15T02:52:43.047Z",
+      "attempted_at": "2026-10-15T03:25:44.428Z",
+      "checked_at": "2026-10-15T03:25:44.428Z",
       "note": ""
     },
     {
       "platform": "iQIYI",
-      "url": "https://www.iq.com/?lang=zh_tw",
+      "url": "https://www.iq.com/ranking?lang=zh_tw",
       "label": "熱播榜",
       "period": "unspecified",
       "items": [],
       "period_label": "官方未公布統計週期",
       "status": "error",
-      "attempted_at": "2026-10-15T02:52:43.047Z",
+      "attempted_at": "2026-10-15T03:25:44.428Z",
       "checked_at": null,
-      "note": "公開首頁回傳其他地區設定且無台灣名次；尚未取得台灣榜單。"
+      "note": "指定的排行榜頁回傳 mod=us，熱播榜 videos 為空；未取得台灣名次。"
     }
   ]
 };
