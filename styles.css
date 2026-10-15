@@ -39,3 +39,6 @@ h1{color:#4c4855}.ranking a{color:#55515f}.ranking a:hover{color:#7e718e}.cast{c
 
 /* Compact cover after removing the tagline. */
 .hero{min-height:205px;padding-top:46px;padding-bottom:15px}.cover-illustration img{height:140px}@media(max-width:1000px){.cover-illustration img{height:140px}}@media(max-width:650px){.hero{min-height:170px;padding-top:48px;padding-bottom:19px}}
+
+/* Colored marks need no backing; white wordmarks use charcoal. */
+.platform-logo{background:#29272d}.platform-logo.on-light,.platform-logo.logo-elta.on-light{background:transparent}
