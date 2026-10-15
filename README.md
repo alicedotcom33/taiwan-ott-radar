@@ -49,3 +49,9 @@ iQIYI pcw_common 雖回應 mod=ntw、lang=zh_tw，但與使用者提供的台灣
 LiTV 讀取首頁 category_id=56、meta_type=rank 的戲劇排行，並逐一核對相同 content_id HTML 中的明示名次。分類採同筆 f_countries 與戲劇類型。CATCHPLAY 台灣頁在目前公開讀取環境轉到企業頁，尚無可用官方榜單，本輪不加入。
 
 Netflix 海外週榜回應若缺母影集資料，使用同一官方卡片的季別 videoId 請求台灣作品頁，並接受 Netflix 本身導向母影集的重新導向。保留原始季別 ID 與 requested_url/resolved_url 證據，再讀官方中文片名，避免海外缺播放資料時掉回待確認。
+
+## iQIYI 台灣核對榜單（2026-10-15 12:29）
+
+使用者提供 home_web 官方 API 回應，人气热榜明示 0–29 名，前六名與官網截圖一致。投影其中前十筆的片名、名次、作品網址及類型證據存入 iq-taiwan-snapshot.mjs；不保存使用者裝置識別碼或完整請求。feed 與排程讀取快取時補上這份 verified_snapshot_id 的核對資料，不重置其他平台快取。
+
+此為官方回應匯入，並非已完成持續自動更新。已測同分組、同裝置、home_web 伺服器回應仍不同；本站 Origin 沒有收到跨站讀取許可標頭，callback/cb 也未產生 JSONP。原因尚未證實。每日無法通過地區核對時保留核對榜單與 checked_at，更新 attempted_at 並顯示警示，不允許錯誤回應覆蓋已核對榜單。
