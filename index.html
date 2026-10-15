@@ -1,1 +1,18 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OTT RADAR｜台灣熱門榜</title><link rel="stylesheet" href="/styles.css"></head><body><header class="wrap"><a class="brand" href="/">OTT RADAR <span>台灣熱門榜</span></a><small id="updated">讀取中</small></header><main class="wrap"><section class="hero"><p class="eyebrow">TAIWAN STREAMING TOP 10</p><h1>大家正在看什麼？</h1><p>各平台官方熱門榜，一眼看懂。</p></section><nav id="platforms" aria-label="選擇平台"></nav><div class="toolbar"><p id="summary" role="status">正在讀取排行榜…</p><button id="reload">重新整理</button></div><section id="content" class="grid"></section><p class="footnote">保留各平台原始名次與榜單範圍，不合併成跨平台排名。綜合榜可能包含電影、動畫與運動；沒有公開綜合榜的平台顯示可取得的官方分類榜。Netflix 使用官方台灣節目週榜，顯示統計區間；取得時間不等於榜單統計日期。</p></main><footer class="wrap">每日 06:00 自動檢查官方榜單 · 讀取失敗保留上次榜單並標示時間</footer><script src="/app.js"></script></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#245f49"><meta name="description" content="一次掌握台灣串流平台官方熱門榜。查看前十名、作品分類與各平台更新時間，找到下一部想看的好戲。">
+<title>OTT RADAR｜台灣熱門榜</title>
+<link rel="icon" type="image/svg+xml" href="/assets/radar-mark.svg"><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="wrap"><a class="brand" href="/" aria-label="OTT RADAR 台灣熱門榜首頁"><img src="/assets/radar-mark.svg" width="42" height="42" alt=""><span class="brand-copy"><strong>OTT RADAR</strong><span>台灣串流熱門榜</span></span></a><small id="updated">榜單讀取中</small></header>
+<main class="wrap">
+<section class="hero"><div class="hero-copy"><p class="eyebrow"><span class="eyebrow-line"></span>THE STREAMING EDIT</p><h1>今天，大家<br class="mobile-break">在看什麼？</h1><p class="hero-description">把各平台的熱門好戲，收進同一個地方。<br>從官方前十名，找到你的下一部。</p><div class="hero-caption"><span class="caption-icon" aria-hidden="true">↗</span> 官方榜單 · 作品分類 · 各平台更新時間</div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-screen"><div class="art-topline"><span>ON YOUR RADAR</span><span>↗</span></div><div class="art-play">▶</div><div class="art-line"></div><div class="art-line short"></div></div><div class="art-ticket"><span>TOP</span><strong>10</strong><span>找到下一部好戲</span></div></div></section>
+<section class="browse"><div class="browse-heading"><h2>熱門榜單</h2><span>選一個平台，開始探索</span></div><nav id="platforms" aria-label="選擇平台"></nav></section>
+<div class="filter-row"><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">搜尋片名</span><input id="search" type="search" placeholder="搜尋想看的片名…" autocomplete="off"></label><label class="category-filter"><span class="sr-only">依作品分類篩選</span><select id="category"><option value="">全部分類</option></select></label><button id="clear-filters" type="button">清除篩選</button></div><p class="filter-hint">搜尋與篩選保留原始名次，分布圖仍顯示完整榜單。</p><div id="freshness" class="freshness" role="status" hidden></div><div class="toolbar"><p id="summary" role="status">正在讀取排行榜…</p><button id="reload" type="button"><span aria-hidden="true">↻</span> 重新整理</button></div>
+<section id="content" class="grid" aria-label="各平台排行榜"></section>
+<div class="source-note"><span class="note-symbol" aria-hidden="true">i</span><p>保留各平台原始名次與榜單範圍，不合併成跨平台排名。綜合榜可能包含電影、動畫與運動；沒有公開綜合榜的平台顯示官方分類榜。Netflix 採台灣節目週榜，統計區間與資料取得時間分開標示。類型分布只代表本榜作品，不代表平台全部片庫。跨平台標籤依同名與分類比對，保留季別區別。</p></div>
+</main><footer class="wrap"><span>OTT RADAR <span class="footer-divider">/</span> TAIWAN STREAMING CHARTS</span><span>榜單來源與更新時間，依各平台標示</span></footer><script src="/app.js"></script>
+</body></html>
