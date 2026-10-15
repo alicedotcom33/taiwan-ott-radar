@@ -1,45 +1,31 @@
-# 台灣 OTT 上新雷達 V2
+# 台灣 OTT 熱門榜
 
-可直接部署到 Netlify 的完整 V2 骨架。
+七平台官方熱門前十名，前台以簡潔榜單呈現，提供平台切換、原始名次、節目連結、榜單範圍與成功取得時間。
 
-## 已完成
-- 日期由新到舊，同日期再依平台分組
-- iQIYI / friDay影音 / Netflix / Disney+ / Hami Video / MyVideo / LINE TV 平台切換
-- 本週、即將、待確認
-- 類型、地區、獨家篩選
-- 「9/18、2026/9/18、這週、下週」文字抓取入口
-- Netlify Blobs 資料層
-- 每天台灣時間 06:00 Scheduled Function
-- Background Function 逐一檢查 7 個官方來源
+## 榜單來源
 
-## 正確性保護
-自動抓取採用保守的逐節目連結解析（`single-item-v1`）。只有同一個節目連結內明確包含片名、戲劇／綜藝類型、完整年／月／日與上線文字，且目標為該平台官方節目網址時，才能列為「已驗證」。不使用連結前後文字，不從列表頁網址推定節目類型，不為只有月／日的文字補上年份。
+|平台|官方榜單|週期|
+|---|---|---|
+|Netflix|Tudum 台灣節目 Top 10|官方週榜，顯示統計區間|
+|friDay影音|最多人觀看|官方未公布統計週期|
+|Disney+|台灣本日熱播 Top 10|本日|
+|Hami Video|本月最熱門|本月|
+|MyVideo|本日戲劇榜|本日；未取得公開綜合榜，不假稱綜合榜|
+|LINE TV|10 大熱門節目|官方未公布統計週期|
+|iQIYI|首頁熱門榜|公開伺服器回傳其他地區設定或空排名時標示讀取受限，不冒充台灣榜|
 
-- 電影、動畫、短劇等不在收錄範圍；電影網址即使出現在綜藝列表也會被排除。
-- Netflix 不再將所有作品預設為戲劇；缺少類型證據時保留待確認。
-- 缺少逐節目證據的舊版已驗證資料會撤回日期、獨家標記並移至待確認；電影與不合格片名不會出現在 feed。
-- 同平台的證據合併只比對完整正規化片名，保留已驗證項目及不同日期，不做子字串配對。
-- feed 在讀取時也會檢查舊資料，無須等排程刷新才撤回不安全結果。
-- 第一次資料遷移會備份原始資料到 `releases-before-single-item-v1.json`；舊日期保留在 `previous_release_date` 供複核。
-- 各來源的 HTTP 失敗會出現在 diagnostics，取得頁面不代表已解析出節目。
+榜單忠實保留官方原始前十名，綜合榜包含電影、動畫等類型。各平台的統計範圍不同，不作跨平台排名。Netflix 官方標題可能為英文；不自行猜譯片名。取得時間與榜單統計日期分開顯示。
 
-目前尚未完成七平台的專用卡片、內頁、結構化資料與歷史分頁解析；待確認或零筆不能解讀為沒有新節目。Netflix《黑白清道夫》為既有人工核對資料，不代表自動 parser 成效。
+## 自動更新
 
-## 部署方式（重要）
-V1 用拖曳即可，但 V2 有 Functions 與排程，建議改成 GitHub + Netlify Continuous Deployment：
-1. 建立 GitHub repository，把 ZIP 解壓後的所有檔案上傳。
-2. Netlify → Add new project / Import an existing project → 選該 repository。
-3. Deploy。
-4. Netlify Functions 頁應看到 feed、manual-refresh、refresh-background、scheduled-refresh。
-5. scheduled-refresh 每天 UTC 22:00 執行，即台灣 06:00。
+Netlify `scheduled-refresh` 每天 UTC 22:00（台灣 06:00）呼叫 `refresh-background`，並行取得七個官方來源。結果寫入 Netlify Blobs 的 `rankings.json`；`feed` 只讀快取。使用者重新整理只讀快取，不重抓官方網站，減少額度消耗。
 
-正式資料欄位包含 source_url、source_published_at、fetched_at、verification_status、exclusive_claim_text。
+每個來源保留 attempted_at、checked_at、status、period_label、原始來源網址。讀取失敗時保留最後成功榜單與時間，標示 stale，不能宣稱已更新。首份已核對官方 HTML 的榜單以 rankings-seed.mjs 提供冷啟動資料。
 
-## 官方 FB 持續更新
-已建立 ChatGPT 每日台灣時間上午 08:00–09:00 的排程核對工作，自 2026-10-01 開始。這是與網站官網排程分開的瀏覽與發布流程：讀取七平台官方 FB、核對每作品證據、更新 `_shared/curated.mjs`、執行測試、合併 GitHub 並部署既有 Netlify 正式站。不是 Netlify Function 自動滑 FB，也不保證登入狀態或 FB 讀取可用。排程依賴 ChatGPT 工作及 GitHub／Netlify 工具連線保持有效；失敗必須回報。
+iQIYI 官網依請求地區回傳不同內容，lang=zh_tw 不能證明為台灣榜；解析器必須檢查地區。讀不到台灣排名時不借用美國或全球榜，不把推薦清單當成排行榜。
 
-官網每天 06:00 的 Scheduled Function 繼續運作，所有查到的符合規則資料（含未來上線）均保留，不再只儲存本週。前台預設本週不沿用全站最後一次他人查詢區間。
+舊上新紀錄、curated 模組與 releases.json 保留，前台與每日刷新已切換至排行榜，不再依賴 FB 登入。
 
-`_shared/curated.mjs` 是可持續追加的官方核對資料與七平台讀取狀態。FB 已驗證紀錄必須使用指定官方專頁的貼文網址、manual_review 逐作品證據；不允許其他帳號、分享短鏈結或未核對的自動 FB 紀錄。未讀到日期的熱播宣傳不能當新上架。前台顯示最後核對時間、每平台已讀筆數與 partial/login_required/error，讀取失敗不清除既有已驗證資料。
+## 測試與部署
 
-2026-09-30 公開讀取僅取得六平台最新各一則，Netflix 登入受限、其他歷史貼文受限；新增 Disney+《你是真的媽?》2026-10-20，其他推薦劇不沿用同一日期。片單仍不完整。
+`npm test` 執行原有資料保護與新排行榜邊界測試。GitHub main 透過既有 Netlify Continuous Deployment 發布。正式站：https://taiwan-ott-radar.netlify.app/
