@@ -7,6 +7,6 @@
     "@netlify/blobs": "^10.0.0"
   },
   "scripts": {
-    "test": "node tests/releases.test.mjs"
+    "test": "node --test tests/*.test.mjs"
   }
 }
