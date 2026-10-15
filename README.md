@@ -79,3 +79,9 @@ Netflix 海外週榜回應若缺母影集資料，使用同一官方卡片的季
 同名登榜標籤以現有前十名資料在瀏覽器計算，保留季別，區分電影／戲劇／綜藝及已知國家，提示各平台原始名次；不另增 API 查詢。
 
 卡司最多兩位，依同一作品官方演員／主演／主持人原始順序，排除導演與推薦節目。Netflix 以 current title ID 的 actors、LINE 以同 dramaId 的 actors、Disney+ 以同名 MediaDetails 主演 credits、LiTV 以同 content_id 演員 credits、friDay 以當前作品參與人員區、Hami/MyVideo 以同作品 JSON-LD actor。iQIYI 以 album URL 唯一識別碼對應官方 actorArr；官方英文名不自行翻譯。缺乏可核對演員資料的作品不補造，運動榜也不假造演員。每日背景刷新另外維護 iq-cast.json，feed 只以相同作品 URL 與片名合併到台灣電腦上傳榜單，避免因補卡司而阻塞簽章上傳或改變榜單。
+
+## 待審新版（尚未部署）
+
+改為白灰底、官方平台 Logo（來源記錄於 assets/platforms/sources.json），各平台代表色與較易區分的分類圖。首頁移除播放框／票券裝飾，縮短封面。AI 劇標籤置於卡司旁，只有同一作品的官方資訊明確標示才採用，故事提及 AI 不算；廚娘的官方證據已核對。標籤獨立於原始作品類型。Netflix 作品頁請求增加一般瀏覽器 User-Agent，卡司缺漏時僅針對同一官方作品頁重試一次；仍缺漏就留白。瀏覽端不增加逐作品查詢。
+
+Windows 安裝程式修正只寫入變更的 DACL，避免 Set-Acl 要求 SeSecurityPrivilege，保留既有 DPAPI 私鑰。
