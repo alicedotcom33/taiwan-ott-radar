@@ -10,7 +10,7 @@ export default async()=>{
  const local=await store.get('iq-taiwan-local.json',{type:'json',consistency:'strong'});
  const iqItems=local?.items||old.boards.find(x=>x.platform==='iQIYI')?.items||[];
  const castItems=await enrichIqCast(iqItems);
- await store.setJSON('iq-cast.json',{updated_at:new Date().toISOString(),items:Object.fromEntries(castItems.filter(x=>x.cast?.length).map(x=>[x.url,{title:x.title,cast:x.cast,cast_evidence:x.cast_evidence}]))});
+ await store.setJSON('iq-cast.json',{updated_at:new Date().toISOString(),items:Object.fromEntries(castItems.filter(x=>x.cast?.length||x.ai_generated).map(x=>[x.url,{title:x.title,cast:x.cast,cast_evidence:x.cast_evidence,ai_generated:x.ai_generated,ai_evidence:x.ai_evidence}]))});
  await store.setJSON('rankings.json',{schema_version:7,updated_at:new Date().toISOString(),boards});
 };
 export const config={background:true,path:'/.netlify/functions/refresh-background'};

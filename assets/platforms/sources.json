@@ -1,0 +1,56 @@
+[
+  {
+    "platform": "iqiyi",
+    "source": "https://www.iq.com/?lang=zh_tw",
+    "path": "/assets/platforms/iqiyi.svg"
+  },
+  {
+    "platform": "netflix",
+    "source": "https://occ.a.nflxso.net/dnmt/api/v6/iL4oJVDYZ8KLSrJ6eG2OwtghbfQ/AAAAAVIENVPMEM3Kn4hVzJseX4N8xPjtBDIpwuFDucWksdxQZ8Ss6Xf8U_vt7ThYYfRmzq0x1CS3nOwTGyVrgADvwfB_tPiK_liS2RjvI40RJSzbKRk-o8b3nCxHfCCnBsyB2XBB9_vRoSmN.svg",
+    "path": "/assets/platforms/netflix.svg",
+    "bytes": 824
+  },
+  {
+    "platform": "friday",
+    "source": "https://video.friday.tw/img/logo.svg",
+    "path": "/assets/platforms/friday.svg",
+    "bytes": 8120
+  },
+  {
+    "platform": "disney",
+    "source": "https://cnbl-cdn.bamgrid.com/assets/e41a64255b8a5840df6162a10642ad98f42a80d3ca8aeb5ebcd70f74d096c0b0/original",
+    "path": "/assets/platforms/disney.png",
+    "bytes": 2797
+  },
+  {
+    "platform": "hami",
+    "source": "https://static-hamivideo.cdn.hinet.net/resources/images/footer/logo.svg",
+    "path": "/assets/platforms/hami.svg",
+    "bytes": 9627
+  },
+  {
+    "platform": "myvideo",
+    "source": "https://www.myvideo.net.tw/static/images/RWD/brand_logo.svg",
+    "path": "/assets/platforms/myvideo.svg",
+    "bytes": 4399
+  },
+  {
+    "platform": "line",
+    "source": "https://web-static.linetv.tw/release-fargate/public/images/logo/logo_darktheme.svg",
+    "path": "/assets/platforms/line.svg",
+    "bytes": 4326
+  },
+  {
+    "platform": "litv",
+    "source": "https://www.litv.tv/_next/static/media/logo.d77e96be.svg",
+    "path": "/assets/platforms/litv.svg",
+    "bytes": 5437
+  },
+  {
+    "platform": "elta",
+    "page": "https://eltaott.tv/",
+    "source": "https://piceltaott-elta.cdn.hinet.net/public/assets/images/logo.png",
+    "path": "/assets/platforms/elta-wordmark.png",
+    "bytes": 1917
+  }
+]
