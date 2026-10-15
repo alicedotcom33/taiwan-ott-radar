@@ -161,7 +161,14 @@ async function enrichMetadata(platform,items){
 
 function actorNames(value){return Array.isArray(value)?value.flatMap(actorNames):typeof value==='string'?[value]:value&&typeof value==='object'?actorNames(value.name):[];}
 function castResult(names,url){const cast=[...new Set(actorNames(names).map(clean).filter(n=>n&&n.length<=100))].slice(0,2);return cast.length?{cast,cast_evidence:{url,text:JSON.stringify(cast)}}:{};}
-function netflixCast(html,entry){const m=/"persons":\{"actors":(\[[\s\S]*?\])/.exec(html);if(!m||!html.slice(Math.max(0,m.index-800),m.index).includes('"topLevelVideoId":'+entry.title_id))return {};try{return castResult(JSON.parse(m[1]).map(x=>x.name),entry.url);}catch{return {};}}
+function netflixCast(html,entry){
+ for(const m of html.matchAll(/"persons"\s*:\s*\{\s*"actors"\s*:\s*(\[[\s\S]*?\])/g)){
+  const ids=[...html.slice(Math.max(0,m.index-1200),m.index).matchAll(/"topLevelVideoId"\s*:\s*(\d+)/g)];
+  if(ids.at(-1)?.[1]!==String(entry.title_id))continue;
+  try{const result=castResult(JSON.parse(m[1]).map(x=>x.name),entry.url);if(result.cast)return result;}catch{}
+ }
+ return {};
+}
 export function structuredCast(html,entry){
  try{
   const raw=html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)?.[1];

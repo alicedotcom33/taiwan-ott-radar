@@ -3,3 +3,8 @@ test('public feed retains visible rankings and freshness, not unused image/evide
 test('paired key is a valid public-only RSA key',()=>{assert.equal(PAIRED_PUBLIC_JWK.d,undefined);assert.equal(publicKeyInfo(JSON.stringify(PAIRED_PUBLIC_JWK)).kid.length,64);});
 import {withIqCast} from '../netlify/functions/_shared/public-feed.mjs';
 test('IQ casts join only by the same verified title URL and title; public response retains two names',()=>{const data={boards:[{platform:'iQIYI',items:[{title:'A',url:'https://www.iq.com/album/a'},{title:'B',url:'https://www.iq.com/album/b'}]}]};const out=withIqCast(data,{items:{'https://www.iq.com/album/a':{title:'A',cast:['甲','乙','丙']},'https://www.iq.com/album/b':{title:'別人',cast:['錯的人']}}});assert.deepEqual(out.boards[0].items[0].cast,['甲','乙']);assert.equal(out.boards[0].items[1].cast,undefined);});
+import {withVerifiedMetadata} from '../netlify/functions/_shared/verified-metadata.mjs';
+test('official Netflix fallback is scoped to exact title and URL; fresh actors win',()=>{
+ const work={title:'野狗骨頭',url:'https://www.netflix.com/tw/title/83097271',category:'戲劇'},other={title:'另一作品',url:work.url};
+ const out=withVerifiedMetadata({boards:[{platform:'Netflix',items:[work,other,{...work,cast:['既有甲','既有乙']}]}]});assert.deepEqual(out.boards[0].items[0].cast,['宋威龍','張婧儀']);assert.equal(out.boards[0].items[0].category,'陸劇');assert.equal(out.boards[0].items[1].cast,undefined);assert.deepEqual(out.boards[0].items[2].cast,['既有甲','既有乙']);
+});
