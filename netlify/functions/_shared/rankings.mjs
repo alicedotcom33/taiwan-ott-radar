@@ -1,5 +1,5 @@
 export const SOURCES=[
- {platform:'Netflix',url:'https://www.netflix.com/tw/',label:'台灣首頁現正熱播',period:'unspecified'},
+ {platform:'Netflix',url:'https://www.netflix.com/browse',label:'台灣今日 Top 10（尚未取得）',period:'daily'},
  {platform:'friDay影音',url:'https://video.friday.tw/ranking/1',label:'最多人觀看',period:'unspecified'},
  {platform:'Disney+',url:'https://www.disneyplus.com/zh-tw',label:'台灣本日熱播 Top 10',period:'daily'},
  {platform:'Hami Video',url:'https://hamivideo.hinet.net/index.do',label:'本月最熱門',period:'unspecified'},
@@ -20,13 +20,9 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
    items.push(item(source,m[1],attr(a[0],'title'),attr(a[0],'href'),attr(m[2].match(/<img\b[^>]*data-src=[^>]+>/)?.[0]||'','data-src')));
   }
  }else if(source.platform==='Netflix'){
-  // Require the Taiwan marketing homepage, not a global or weekly Top 10 list.
-  if(!/<title>Netflix台灣/.test(html))return {items:[],period_label:'台灣首頁'};
-  const body=section(html,'現正熱播</h2>','</ul>');
-  for(const m of body.matchAll(/<button\b[^>]*data-uia="top-10-element-(\d+)"[^>]*>([\s\S]*?)<\/button>/g)){
-   const title=m[2].match(/<\/span>([^<]+)<\/div>/)?.[1];
-   if(title)items.push(item(source,m[1],title,source.url,m[2].match(/background-image:url\(([^)]+)\)/)?.[1]));
-  }period_label='官網現正熱播 · 未公布統計區間';
+  // Public signup/marketing cards are not evidence of the signed-in Taiwan daily chart.
+  // Neither /tw/ nor a Traditional Chinese page title establishes ranking territory.
+  return {items:[],period_label:'需要可核對台灣地區的會員今日榜'};
  }else if(source.platform==='Disney+'){
   const body=section(html,'台灣本日熱播 Top 10','</ul>');
   for(const m of body.matchAll(/<li\b[^>]*data-testid="collection-tile-(\d+)"[^>]*>([\s\S]*?)<\/li>/g)){
