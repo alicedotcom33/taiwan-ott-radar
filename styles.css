@@ -14,3 +14,6 @@
 .platform-logo{display:grid;place-items:center;width:116px;height:43px;padding:8px 10px;background:#232830;border-radius:8px;flex-shrink:0}.platform-logo img{display:block;width:100%;height:100%;object-fit:contain}.platform-logo.on-light{background:#fff;border:1px solid #edf0f4}.platform-logo.on-light img[src$="elta.png"]{width:35px;height:35px}.platform-logo.on-light:has(img[src$="elta.png"]){padding:3px}.board-title{min-height:43px}.board-head{gap:6px}.status{font-size:9px}.board-label{margin-top:10px}@media(max-width:650px){.platform-logo{width:119px;height:44px}}
 
 .category{color:color-mix(in srgb,var(--category-color,#9b9fa9) 76%,#152234);background:color-mix(in srgb,var(--category-color,#9b9fa9) 11%,white);border-color:color-mix(in srgb,var(--category-color,#9b9fa9) 22%,white)}
+
+/* Keep the full official Disney+ asset inside a definite image box. */
+.platform-logo.logo-disney{width:116px;height:48px;padding:4px 12px;overflow:visible}.platform-logo.logo-disney img{width:72px;height:40px;max-width:100%;max-height:100%;object-fit:contain;flex-shrink:0}
