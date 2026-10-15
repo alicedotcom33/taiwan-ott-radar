@@ -1,79 +1,18 @@
 export const INITIAL_RANKINGS = {
-  "schema_version": 2,
-  "updated_at": "2026-10-15T03:13:01.789Z",
+  "schema_version": 3,
+  "updated_at": "2026-10-15T03:18:33.204Z",
   "boards": [
     {
       "platform": "Netflix",
-      "url": "https://www.netflix.com/tw/",
-      "label": "台灣首頁現正熱播",
-      "period": "unspecified",
-      "items": [
-        {
-          "rank": 1,
-          "title": "早春晴朗",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABQD8BOlYiTGaEUj4AWGSwT2UlKygAVgsGQeUBsw_LUrpB0-o01thJZeb36i4PpnR0G_ABCZqG2xCqX6YspcmptZGksgdCdLGBtM.jpg?r=a2b"
-        },
-        {
-          "rank": 2,
-          "title": "Doctor X：白色黑手黨時代",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABdPgtTlernJeCPeqNH9zMLqeG9juAFYn6qj_DjhTqlPAOiLr8djOqjxXkxmyrkV3qPpZ7cL9luidThP-QfnN8x_HZ4mk8pbnFPuj_SXslt8z_uEMYHZbxjH-wCFo3X4LE62J.jpg?r=26e"
-        },
-        {
-          "rank": 3,
-          "title": "陽光女子合唱團",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABS-aDnXhCvBEe7CI_MrP7ovAE5S_zGjr3g0ArC1R4po_msIr_i6o2qwSZU_bC-sDsDH0HS5GM3PMiPIsLJLaz8OLceBNmyqL69k.jpg?r=2f3"
-        },
-        {
-          "rank": 4,
-          "title": "藥師少女的獨語",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABREpNr9VNSdTxst3-GyPb0GxSVL8THdZjQhijEd9UDZfVnHoy-KqjmYd-_z12b9R3XrVaicnWiqZ5gid94K3sNIEVWkXCUmLbSA.jpg?r=1d9"
-        },
-        {
-          "rank": 5,
-          "title": "黑白清道夫",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABe-woJR0YipUmPau8ZxDVdt6qsiYuXjoH7Sg7EPuOrp-s6U73s9k1gIDg_pmHSjTz2w3DYke8kUav1jwdfquttLEatlN8O3gcjLsYIyWRsHqyWAQXrv9DGC_Sk9JLzQP2i3s.jpg?r=c04"
-        },
-        {
-          "rank": 6,
-          "title": "鐵拳教育",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABaGTpJ66EzCzKuwFikDeOTo-R5EdmPqzwUl-5l1bVmD-FAjFcnGGcwYFKZRR3kll8HbpuMtmofkUYWC8My3jS0Ianp1-mBMjfD19q5iEzMd1IeKuIOhMjM7NLv5ROXdoFDWA.jpg?r=35e"
-        },
-        {
-          "rank": 7,
-          "title": "無可替代",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABd5d3S7XPxGXaD_RtuyEwsI7S2LTHvf1J6I6mjXAn8Dc-14A0pw8TCEE-w8Wy1W7M6YijLxNKkz4qE4wziCgci7MS_u5duD4i4w.jpg?r=07d"
-        },
-        {
-          "rank": 8,
-          "title": "挑情醜聞",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABWmzCTkl9h1Dda6gY43rcM0OTIQjyMuRwgLpJYVRsi8-yGP7-CJB2uXq6sGx2ytENlxKZeUvB48xygifaPAESUZS4COznNJtf4DfoDrXS52NRGX5FtOO1mhp1P25vnKAYBOu.jpg?r=a19"
-        },
-        {
-          "rank": 9,
-          "title": "戀愛充電中",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABcozqlUAUibepL1cxd7Dfr-fSg9utLfm62MV-I9fd1Wy0bExCB6bp0L6RPa2nhNitDk8UPszqYfa79FqwtK-F6SWKTDI-N32taG80XRRiR8H0Y8EktbK_O25IdvyC8MbejPx.jpg?r=516"
-        },
-        {
-          "rank": 10,
-          "title": "飆馬野郎 JOJO 的奇妙冒險",
-          "url": "https://www.netflix.com/tw/",
-          "image": "https://occ-0-4249-395.1.nflxso.net/dnm/api/v6/_YyUT33Ze3kFXjMydIZFIm6ajHk/AAAABduoOc2lvZflxATGvaJ-uukw3ljuFMsJ1oYoirgWR9TtwFUlAkueJybuYdO4_Kk3R0XyrcrBdaFlUB-yXHCgK87afj_EY7grmSagiYOPJM9Ni8qVpFBPPYgjvbA9CVaU4BKC.jpg?r=e8f"
-        }
-      ],
-      "period_label": "官網現正熱播 · 未公布統計區間",
-      "status": "ok",
-      "checked_at": "2026-10-15T03:13:01.789Z",
-      "attempted_at": "2026-10-15T03:13:01.789Z",
-      "note": "台灣公開首頁現正熱播榜；官方未公布統計區間。"
+      "url": "https://www.netflix.com/browse",
+      "label": "台灣今日 Top 10（尚未取得）",
+      "period": "daily",
+      "items": [],
+      "status": "login_required",
+      "attempted_at": "2026-10-15T03:18:33.204Z",
+      "checked_at": null,
+      "period_label": "台灣會員今日榜",
+      "note": "已撤下地區無法確認的公開宣傳首頁排名；尚未取得可核對台灣地區的會員今日榜。"
     },
     {
       "platform": "friDay影音",
