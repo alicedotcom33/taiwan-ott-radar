@@ -1,3 +1,4 @@
+const refresh=await fetch('https://taiwan-ott-radar.netlify.app/.netlify/functions/refresh-background',{signal:AbortSignal.timeout(20000)});console.log('REFRESH_TRIGGER',refresh.status);await new Promise(resolve=>setTimeout(resolve,85000));
 const url='https://taiwan-ott-radar.netlify.app/.netlify/functions/feed';
 const r=await fetch(url,{headers:{accept:'application/json'},signal:AbortSignal.timeout(20000)});
 if(!r.ok)throw Error('HTTP '+r.status);
