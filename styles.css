@@ -42,3 +42,6 @@ h1{color:#4c4855}.ranking a{color:#55515f}.ranking a:hover{color:#7e718e}.cast{c
 
 /* Colored marks need no backing; white wordmarks use charcoal. */
 .platform-logo{background:#29272d}.platform-logo.on-light,.platform-logo.logo-elta.on-light{background:transparent}
+
+/* Compact daily observations */
+.highlights{margin:5px 0 18px;padding:10px 13px;border:1px solid #e5ddec;border-radius:10px;background:white}.highlights[hidden]{display:none}.highlight-heading{display:flex;gap:10px;align-items:baseline;margin-bottom:8px}.highlight-heading strong{font-size:12px;color:#745e88}.highlight-heading small{font-size:10px;color:#968b9d}.highlight-items{display:flex;gap:8px;flex-wrap:wrap}.highlight-pill{display:flex;align-items:baseline;gap:7px;flex:1 1 210px;padding:7px 10px;border-radius:7px;background:#f7f4fa}.highlight-pill b{font-size:10px;white-space:nowrap;color:#9378a7}.highlight-pill span{font-size:11px;color:#4b4351}.wetv-pending .empty{text-align:left;font-size:12px;line-height:1.8;padding:18px 13px}@media(max-width:650px){.highlight-pill{flex-basis:100%}}
