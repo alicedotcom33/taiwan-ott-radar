@@ -14,3 +14,4 @@ jobs:
           node-version: '22'
       - run: npm install --ignore-scripts --no-package-lock
       - run: npm test
+      - run: node scripts/check-wetv-home.mjs
