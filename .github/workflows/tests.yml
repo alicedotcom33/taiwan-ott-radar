@@ -1,7 +1,7 @@
 name: Node tests
 on:
   push:
-    branches: [feature/highlights-wetv-20261016]
+    branches: [feature/highlights-wetv-20261016, fix/remove-wetv-expand-cross-platform-20261016]
   pull_request:
     branches: [main]
 jobs:
@@ -14,4 +14,4 @@ jobs:
           node-version: '22'
       - run: npm install --ignore-scripts --no-package-lock
       - run: npm test
-      - run: node scripts/check-wetv-home.mjs
+      - run: node scripts/check-production-iq-status.mjs
