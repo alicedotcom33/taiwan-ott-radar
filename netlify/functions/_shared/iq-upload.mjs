@@ -12,6 +12,8 @@ export function validateLocalUpload(bytes,signature,publicKey,now=Date.now()){
  return {...source,...parsed,status:'ok',period_label:'台灣端每日擷取',verification_mode:'taiwan_local_agent',verified_snapshot_id:'iq-local-agent-v1',automatic_updating:true,checked_at:new Date(captured).toISOString(),attempted_at:new Date(captured).toISOString(),received_at:new Date(now).toISOString(),note:'由已配對的台灣電腦擷取官方熱播榜；電腦須開機連網。'};
 }
 export function withLocalIqBoard(data,local,now=Date.now()){
+ // The current local uploader's API response differs from the verified Taiwan front-end. Do not overwrite a confirmed ten-item snapshot until its request conditions are resolved.
+ if(data.boards.some(b=>b.platform==='iQIYI'&&b.verified_snapshot_id==='iq-tw-official-20261016-frontend-10'))return data;
  if(local?.verification_mode!=='taiwan_local_agent'||local.items?.length!==10)return data;
  const stale=now-Date.parse(local.checked_at)>36*3600000,board={...local,stale,status:stale?'partial':'ok',note:stale?'台灣電腦超過 36 小時未成功更新，保留上次榜單。':local.note};
  return {...data,updated_at:Date.parse(local.checked_at)>Date.parse(data.updated_at)?local.checked_at:data.updated_at,boards:data.boards.map(b=>b.platform==='iQIYI'?board:b)};
