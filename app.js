@@ -16,10 +16,10 @@ function workType(x){const c=x.category||'';return /動畫電影/.test(c)?'anima
 function sharedTag(item){const key=workKey(item),kind=workType(item),country=(item.category||'').match(/^[韓日陸台港泰](?=[劇綜片]$)/)?.[0],peers=data.boards.flatMap(b=>{const hit=b.items.find(x=>{const region=(x.category||'').match(/^[韓日陸台港泰](?=[劇綜片]$)/)?.[0];return workKey(x)===key&&workType(x)===kind&&(!country||!region||region===country);});return hit?[{platform:b.platform,rank:hit.rank}]:[];});if(peers.length<2)return '';const details=peers.map(x=>x.platform+' 第 '+x.rank+' 名').join('、');return `<span class="cross-badge" title="${E(details)}" aria-label="同名作品：${E(details)}">↗ 同名登上 ${peers.length} 榜</span>`;}
 
 
-function reliableBoard(b){return Array.isArray(b.items)&&b.items.length>0&&!b.stale&&b.status!=='error'&&b.automatic_updating!==false&&(!b.checked_at||Date.now()-Date.parse(b.checked_at)<36*3600000);}
+function reliableBoard(b){return b.verification_mode!=='taiwan_local_unverified'&&Array.isArray(b.items)&&b.items.length>0&&!b.stale&&b.status!=='error'&&b.automatic_updating!==false&&(!b.checked_at||Date.now()-Date.parse(b.checked_at)<36*3600000);}
 function observations(boards){
  const good=boards.filter(reliableBoard),groups=new Map(),notes=[];
- for(const board of boards.filter(b=>b.platform!=='WeTV'&&b.items?.length&&b.status!=='error'&&b.status!=='unavailable'))for(const x of board.items){
+ for(const board of boards.filter(b=>b.verification_mode!=='taiwan_local_unverified'&&b.platform!=='WeTV'&&b.items?.length&&b.status!=='error'&&b.status!=='unavailable'))for(const x of board.items){
   if(!x.title)continue;
   const key=workKey(x)+'|'+(workType(x)==='戲劇'||workType(x)==='影集'||!x.category?'series':workType(x));
   const list=groups.get(key)||[];
