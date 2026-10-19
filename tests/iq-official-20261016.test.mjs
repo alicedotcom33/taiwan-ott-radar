@@ -9,9 +9,9 @@ test('reviewed Taiwan homepage has 10 unique ranked works in screenshot order',(
  assert.deepEqual(items.map(x=>x.rank),[1,2,3,4,5,6,7,8,9,10]);
  assert.equal(new Set(items.map(x=>x.url)).size,10);
 });
-test('old automated upload cannot silently overwrite the verified screenshot',()=>{
+test('newer local upload is visible but clearly unverified',()=>{
  const seed={schema_version:7,updated_at:'2026-10-15T00:00:00Z',boards:[{platform:'iQIYI',items:[]}]};
  const protectedData=withVerifiedIqSnapshot(seed);
  const local={platform:'iQIYI',verification_mode:'taiwan_local_agent',checked_at:new Date().toISOString(),items:Array.from({length:10},(_,i)=>({rank:i+1,title:'不同的榜單'}))};
- assert.equal(withLocalIqBoard(protectedData,local).boards[0].items[4].title,'蒸蒸日上');
+ const updated=withLocalIqBoard(protectedData,local).boards[0]; assert.equal(updated.items[4].title,'不同的榜單');assert.equal(updated.verification_mode,'taiwan_local_unverified');assert.equal(updated.status,'partial');
 });
