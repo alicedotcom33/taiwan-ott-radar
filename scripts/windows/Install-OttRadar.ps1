@@ -98,11 +98,13 @@ if (!$paired) { Write-Host 'Pairing not finished. Run this installer again later
 if ($LASTEXITCODE -ne 0) { throw 'First upload failed. Nothing scheduled.' }
 $action = New-ScheduledTaskAction -Execute $powerShell -Argument ('-NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File "'+$workerPath+'"')
 $user = [Security.Principal.WindowsIdentity]::GetCurrent().Name
-$daily = New-ScheduledTaskTrigger -Daily -At '09:00'
+$daily = New-ScheduledTaskTrigger -Daily -At '10:00'
+# Hourly checks make up for missed runs during shutdown, sign-in, or temporary network loss.
+$hourly = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(2) -RepetitionInterval (New-TimeSpan -Hours 1) -RepetitionDuration (New-TimeSpan -Days 3650)
 $logon = New-ScheduledTaskTrigger -AtLogOn -User $user
 $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 15) -ExecutionTimeLimit (New-TimeSpan -Minutes 5) -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
 $principal = New-ScheduledTaskPrincipal -UserId $user -LogonType Interactive -RunLevel Limited
-Register-ScheduledTask -TaskName 'OTT Radar Taiwan iQIYI' -Action $action -Trigger @($daily,$logon) -Settings $settings -Principal $principal -Force | Out-Null
-Write-Host 'DONE: Daily 09:00 local time, plus sign-in catch-up; only one successful upload per day.'
+Register-ScheduledTask -TaskName 'OTT Radar Taiwan iQIYI' -Action $action -Trigger @($daily,$logon,$hourly) -Settings $settings -Principal $principal -Force | Out-Null
+Write-Host 'DONE: Daily 10:00 local time, plus sign-in and hourly catch-up; only one successful upload per day.'
 Write-Host ('Logs: '+(Join-Path $folder 'update.log'))
 Write-Host 'The PC must be signed in and online. No admin rights or Facebook login needed.'
