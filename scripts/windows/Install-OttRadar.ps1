@@ -100,7 +100,7 @@ $action = New-ScheduledTaskAction -Execute $powerShell -Argument ('-NoProfile -N
 $user = [Security.Principal.WindowsIdentity]::GetCurrent().Name
 $daily = New-ScheduledTaskTrigger -Daily -At '10:00'
 # Hourly checks make up for missed runs during shutdown, sign-in, or temporary network loss.
-$hourly = New-ScheduledTaskTrigger -Once -At '00:10' -RepetitionInterval (New-TimeSpan -Hours 1) -RepetitionDuration (New-TimeSpan -Days 1)
+$hourly = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(2) -RepetitionInterval (New-TimeSpan -Hours 1) -RepetitionDuration (New-TimeSpan -Days 3650)
 $logon = New-ScheduledTaskTrigger -AtLogOn -User $user
 $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 15) -ExecutionTimeLimit (New-TimeSpan -Minutes 5) -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
 $principal = New-ScheduledTaskPrincipal -UserId $user -LogonType Interactive -RunLevel Limited
