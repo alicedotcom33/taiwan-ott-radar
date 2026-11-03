@@ -56,12 +56,12 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
    };
    visit(root);
    const ranked=found.slice(0,10);
-   if(ranked.length===10&&ranked.every((x,i)=>x.index===i&&x.title&&/^\\/zh-tw\\/browse\\/entity-[a-z0-9-]+$/i.test(x.url||''))){
+   if(ranked.length===10&&ranked.every((x,i)=>x.index===i&&x.title&&String(x.url||'').startsWith('/zh-tw/browse/entity-'))){
     items=ranked.map((x,i)=>item(source,i+1,x.title,x.url));
    }
   }catch{}
   const body=section(html,'台灣本日熱播 Top 10','</ul>');
-  for(const m of body.matchAll(/<li\b[^>]*data-testid="collection-tile-(\d+)"[^>]*>([\s\S]*?)<\/li>/g)){
+  if(!items.length)for(const m of body.matchAll(/<li\b[^>]*data-testid="collection-tile-(\d+)"[^>]*>([\s\S]*?)<\/li>/g)){
    const a=m[2].match(/<a\b[^>]*aria-label=[^>]*>/)?.[0]||'';if(a)items.push(item(source,+m[1]+1,attr(a,'aria-label'),attr(a,'href'),attr(m[2].match(/<img\b[^>]*>/)?.[0]||'','src')));
   }period_label='本日熱播（官網標示）';
  }else if(source.platform==='Hami Video'){
