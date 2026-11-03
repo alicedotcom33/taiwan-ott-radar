@@ -33,6 +33,30 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
   items=netflixTitleIds(html,items);
   period_label=html.match(/\d{1,2}\/\d{1,2}\/\d{2} - \d{1,2}\/\d{1,2}\/\d{2}/)?.[0]||'官方週榜';
  }else if(source.platform==='Disney+'){
+  // Disney's public homepage now serializes its ranking in Next.js SSR data.
+  // Bind the results to the Taiwan Top 10 heading to avoid recommendation tiles.
+  try{
+   const raw=html.match(/<script[^>]*id=["']__NEXT_DATA__["'][^>]*>([\\s\\S]*?)<\\/script>/)?.[1];
+   const data=JSON.parse(raw);
+   const root=data.props?.pageProps?.stitchDocument?.mainContent||[];
+   const found=[];
+   const visit=(node,depth=0)=>{
+    if(!node||typeof node!=='object'||depth>12)return;
+    if(node._type==='Slider'&&node.title?.children==='台灣本日熱播 Top 10'&&node.containerStyle==='top_ranked'){
+     found.push(...(node.children||[]).filter(x=>x._type==='TopRankedCard'));
+     return;
+    }
+    for(const value of Object.values(node))if(value&&typeof value==='object'){
+     if(Array.isArray(value))for(const child of value)visit(child,depth+1);
+     else visit(value,depth+1);
+    }
+   };
+   visit(root);
+   const ranked=found.slice(0,10);
+   if(ranked.length===10&&ranked.every((x,i)=>x.index===i&&x.title&&/^\\/zh-tw\\/browse\\/entity-[a-z0-9-]+$/i.test(x.url||''))){
+    items=ranked.map((x,i)=>item(source,i+1,x.title,x.url));
+   }
+  }catch{}
   const body=section(html,'台灣本日熱播 Top 10','</ul>');
   for(const m of body.matchAll(/<li\b[^>]*data-testid="collection-tile-(\d+)"[^>]*>([\s\S]*?)<\/li>/g)){
    const a=m[2].match(/<a\b[^>]*aria-label=[^>]*>/)?.[0]||'';if(a)items.push(item(source,+m[1]+1,attr(a,'aria-label'),attr(a,'href'),attr(m[2].match(/<img\b[^>]*>/)?.[0]||'','src')));
@@ -154,7 +178,7 @@ function parseWorkMetadata(platform,html,entry){
 async function enrichMetadata(platform,items){
  const out=[];for(let i=0;i<items.length;i+=5){out.push(...await Promise.all(items.slice(i,i+5).map(async x=>{
   if(platform==='愛爾達'&&x.category==='運動')return x;
-  const fallback=platform==='Netflix'?{...x,original_title:x.title,title_pending:true,title:'中文片名待確認（第'+x.rank+'名）'}:x;
+  const fallback=platform==='Netflix'?{...x,original_title:x.title,title_pending:true,english_title:true}:x;
   if(platform==='Netflix'&&!x.title_id)return fallback;
   try{const r=await fetch(x.url,{headers:{'accept-language':'zh-TW,zh;q=0.9','user-agent':'Mozilla/5.0'},signal:AbortSignal.timeout(25000)});if(r.ok){let entry=x;if(platform==='Netflix'){const final=new URL(r.url);if(final.hostname!=='www.netflix.com'||!/^\/tw\/title\/\d+$/.test(final.pathname))return fallback;if(final.pathname!==new URL(x.url).pathname){if(x.title_id!==x.ranking_video_id)return fallback;entry={...x,url:final.href,title_id:final.pathname.split('/').at(-1),title_redirect_evidence:{requested_url:x.url,resolved_url:final.href}};}}let metadata=parsePlatformMetadata(platform,await r.text(),entry);if(platform==='Netflix'&&(!metadata.title||!metadata.cast?.length)){try{const retry=await fetch(entry.url,{headers:{'accept-language':'zh-TW,zh;q=0.9','user-agent':'Mozilla/5.0'},signal:AbortSignal.timeout(12000)});if(retry.ok&&new URL(retry.url).pathname===new URL(entry.url).pathname)metadata={...metadata,...parsePlatformMetadata(platform,await retry.text(),entry)};}catch{}}return {...fallback,...(platform==='Netflix'&&metadata.title?{title_id:entry.title_id,url:entry.url,title_redirect_evidence:entry.title_redirect_evidence}:{}),...metadata};}}catch{}return fallback;
  })));}return out;
