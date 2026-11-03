@@ -1,0 +1,16 @@
+name: Daily ranking health check
+on:
+  schedule:
+    - cron: '0 3 * * *' # 11:00 Taiwan time, after the 10:00 daily refresh
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-ranking-health.mjs

@@ -39,3 +39,18 @@ test('LiTV cast requires matching work content ID and explicit actor credits',()
 test('Netflix actor scan skips recommendation block and accepts spaced current-work metadata',()=>{
  const entry={title:'Title',title_id:'123',url:'https://www.netflix.com/tw/title/123'},html='<h1>中文名</h1>"topLevelVideoId":999,"persons":{"actors":[{"name":"他劇演員"}]} "topLevelVideoId":123, "persons" : { "actors" : [{"name":"目前甲"},{"name":"目前乙"}] }';assert.deepEqual(parsePlatformMetadata('Netflix',html,entry).cast,['目前甲','目前乙']);
 });
+
+test('Disney+ parses live Next.js ranked slider and ignores other carousels',()=>{
+ const cards=Array.from({length:10},(_,i)=>({_type:'TopRankedCard',index:i,title:'節目'+(i+1),url:'/zh-tw/browse/entity-12345678-1234-1234-1234-1234567890'+String(i).padStart(2,'0')}));
+ const doc={props:{pageProps:{stitchDocument:{mainContent:[{control:{components:[{_type:'Slider',title:{children:'推薦'},containerStyle:'top_ranked',children:[{...cards[0],title:'推薦錯誤'}]},{_type:'Slider',title:{children:'台灣本日熱播 Top 10'},containerStyle:'top_ranked',children:cards}]}}]}}}};
+ const html='<script id="__NEXT_DATA__" type="application/json">'+JSON.stringify(doc)+'</script>';
+ const out=parseRanking(source('Disney+'),html).items;
+ assert.deepEqual(out.map(x=>x.title),cards.map(x=>x.title));
+ assert.deepEqual(out.map(x=>x.rank),[1,2,3,4,5,6,7,8,9,10]);
+ assert.equal(parseRanking(source('Disney+'),html.replace('台灣本日熱播 Top 10','其他推薦')).items.length,0);
+});
+test('Disney+ rejects incomplete current SSR ranking rather than claiming refreshed ten',()=>{
+ const cards=Array.from({length:9},(_,i)=>({_type:'TopRankedCard',index:i,title:'節目'+(i+1),url:'/zh-tw/browse/entity-12345678-1234-1234-1234-1234567890'+String(i).padStart(2,'0')}));
+ const doc={props:{pageProps:{stitchDocument:{mainContent:[{_type:'Slider',title:{children:'台灣本日熱播 Top 10'},containerStyle:'top_ranked',children:cards}]}}}};
+ assert.equal(parseRanking(source('Disney+'),'<script id="__NEXT_DATA__">'+JSON.stringify(doc)+'</script>').items.length,0);
+});
