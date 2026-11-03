@@ -7,9 +7,7 @@ export function withVerifiedMetadata(data){return {...data,boards:data.boards.ma
  // The weekly chart links to season ID 83124330; Netflix's official Taiwan show page is 83124329.
  if(String(x.title_id)==='83124330'||x.url==='https://www.netflix.com/tw/title/83124330'){
   const original=x.original_title||x.title;
-  if(/Driving Mom Crazy|中文片名待確認/.test(original)){
    return {...x,title:'新手上路',url:'https://www.netflix.com/tw/title/83124329',title_id:'83124329',original_title:original,title_pending:false,english_title:false,category:'台劇',title_evidence:{url:'https://www.netflix.com/tw/title/83124329',text:'新手上路'},category_evidence:{url:'https://www.netflix.com/tw/title/83124329',text:'台灣｜喜劇'},cast:['陳意涵','劉冠廷']};
-  }
  }
  const hit=VERIFIED_NETFLIX.find(v=>x.url==='https://www.netflix.com/tw/title/'+v.id&&x.title===v.title);if(!hit)return x;
  const evidence={url:x.url,text:hit.cast.join('、'),checked_at:'2026-10-15T07:14:00Z'};
