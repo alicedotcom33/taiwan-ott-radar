@@ -36,7 +36,10 @@ export function parseRanking(source,html){let items=[],period_label=source.platf
   // Disney's public homepage now serializes its ranking in Next.js SSR data.
   // Bind the results to the Taiwan Top 10 heading to avoid recommendation tiles.
   try{
-   const raw=html.match(/<script[^>]*id=["']__NEXT_DATA__["'][^>]*>([\\s\\S]*?)<\\/script>/)?.[1];
+   const start=html.indexOf('id="__NEXT_DATA__"');
+   const open=start>=0?html.indexOf('>',start):-1;
+   const close=open>=0?html.indexOf('</script>',open):-1;
+   const raw=open>=0&&close>open?html.slice(open+1,close):null;
    const data=JSON.parse(raw);
    const root=data.props?.pageProps?.stitchDocument?.mainContent||[];
    const found=[];
