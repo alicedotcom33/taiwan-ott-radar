@@ -1,7 +1,7 @@
 name: Node tests
 on:
   push:
-    branches: [feature/highlights-wetv-20261016, fix/remove-wetv-expand-cross-platform-20261016]
+    branches: [feature/highlights-wetv-20261016, fix/remove-wetv-expand-cross-platform-20261016, audit/all-ten-iq-20261016]
   pull_request:
     branches: [main]
 jobs:
